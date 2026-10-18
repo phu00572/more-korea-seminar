@@ -328,6 +328,7 @@ body.no-ko .ko{display:none !important}
 .ui-btn:disabled{opacity:.5;cursor:default}
 .qa-item{background:rgba(255,255,255,.06);border-left:3px solid var(--accent);border-radius:8px;padding:10px 12px;margin-bottom:8px;font-size:16px;display:flex;align-items:center;gap:10px}
 .qa-text{flex:1;color:#eee;line-height:1.5;text-align:left;word-break:break-word}
+.qa-zh{display:block;margin-top:5px;padding-top:5px;border-top:1px dashed rgba(255,255,255,.12);font-size:15px;color:var(--accent2)}
 .qa-like{flex:0 0 auto;background:rgba(255,122,47,.15);border:1px solid rgba(255,122,47,.4);color:var(--accent);border-radius:20px;padding:4px 10px;cursor:pointer;font-size:15px;font-family:inherit;white-space:nowrap}
 
 /* ---------- 全域提問牆側邊欄 ---------- */
@@ -449,12 +450,12 @@ body.mobile #qa-handle > span:nth-child(2),body.mobile #qa-handle .qh-dot{displa
         <button class="card popt" data-id="ill"><span class="k">C</span><span class="lb">疾病・高山症<span class="ko">질병·고산병</span></span><span class="bar"><i></i></span><span class="pc">0%</span></button>
         <button class="card popt" data-id="weather"><span class="k">D</span><span class="lb">天候惡劣<span class="ko">악천후</span></span><span class="bar"><i></i></span><span class="pc">0%</span></button>
       </div>
-      <div class="poll-meta"><span>已投票：<b id="poll-total" class="hl2">0</b> 人（可點選改票）<span class="ko" style="font-size:14px"> · 투표 인원 (다시 눌러 변경 가능)</span></span><button class="btn" id="pollReveal">揭曉答案 · 정답 공개</button></div>
+      <div class="poll-meta"><span>已投票：<b id="poll-total" class="hl2">0</b> 人（可點選改票）<span class="ko" style="font-size:14px"> · 투표 인원 (다시 눌러 변경 가능)</span></span><button class="btn" id="pollReveal">揭曉答案 · 정답을 공개하겠습니다</button></div>
       <div id="pollStatus"></div>
     </div>
     <div class="card qr-card"><div class="qr" id="qr-poll"></div><h4>手機掃描即可投票</h4><p class="ko">휴대폰으로 QR 코드를 스캔해 투표하세요</p><div class="url" id="qr-url"></div></div>
   </div>
-  <aside class="notes" data-sec="40"><p>在看數據之前，先請大家猜一猜：在台灣的山域事故裡，人數最多的原因是什麼？請用手機掃 QR code 投票。（等 15～20 秒）好，我們來看結果……（按「揭曉答案」）答案是迷路。下一頁看實際的數字。</p><p class="ko">데이터를 보기 전에 먼저 맞혀 보시죠. 대만 산악사고에서 인원 기준으로 가장 많은 원인은 무엇일까요? 휴대폰으로 QR 코드를 스캔해 투표해 주십시오. (15~20초 대기) 자, 결과를 보겠습니다… ('정답 공개' 클릭) 정답은 '길 잃음'입니다. 다음 페이지에서 실제 수치를 보겠습니다.</p></aside>
+  <aside class="notes" data-sec="40"><p>在看數據之前，先請大家猜一猜：在台灣的山域事故裡，人數最多的原因是什麼？請用手機掃 QR code 投票。（等 15～20 秒）好，我們來看結果……（按「揭曉答案」）答案是迷路。下一頁看實際的數字。</p><p class="ko">데이터를 보기 전에 먼저 맞혀 보시죠. 대만 산악사고에서 인원 기준으로 가장 많은 원인은 무엇일까요? 휴대폰으로 QR 코드를 스캔해 투표해 주십시오. (15~20초 대기) 자, 결과를 보겠습니다… ('정답을 공개하겠습니다' 클릭) 정답은 '길 잃음'입니다. 다음 페이지에서 실제 수치를 보겠습니다.</p></aside>
 </section>
 
 <!-- ================= P3 趨勢 ================= -->
@@ -643,20 +644,20 @@ body.mobile #qa-handle > span:nth-child(2),body.mobile #qa-handle .qh-dot{displa
   <aside class="notes" data-sec="45"><p>找到人之後，就是救護。台灣野外緊急救護我們使用 PAS 野外救護評估系統，分三層：現場評估，確認人數、受傷機轉和風險；初級評估，穩定循環、呼吸、中樞，依情況用城市外傷 XABCDE 或戰術外傷 MARCH；次級評估，做重點理學檢查、生命徵象，並用 SOAP、SAMPLE 記錄，準備交接。最後，是在持續照護下讓傷患脫困。</p><p class="ko">사람을 찾은 뒤에는 응급처치입니다. 대만의 야외 응급처치에서 저희는 PAS 야외 응급처치 평가 시스템을 사용하며, 세 단계로 나뉩니다. 현장 평가에서는 인원, 손상 기전, 위험을 확인합니다. 1차 평가에서는 순환·호흡·중추신경을 안정시키며, 상황에 따라 일반 외상 XABCDE 또는 전술 외상 MARCH를 적용합니다. 2차 평가에서는 집중 신체 검진과 활력징후 측정을 하고, SOAP·SAMPLE로 기록해 인계를 준비합니다. 마지막으로 지속적인 처치를 유지하면서 환자를 구출합니다.</p></aside>
 </section>
 
-<!-- ================= P12 個人 1.2kg ================= -->
+<!-- ================= P12 個人 1.3kg ================= -->
 <section data-page="12" data-section="喚起行動" data-background-image="images/bg-rope.jpg" data-background-opacity="0.14" data-background-size="cover">
   <div class="inner lw-grid">
     <div class="frame lw-photo"><img src="images/p12-personal.jpg" alt="個人輕量化繩索裝備"><span class="tag">PERSONAL KIT</span></div>
     <div class="lw-side">
       <div class="kicker">11 · Lightweight · Personal</div>
-      <div class="kg" data-count="1.2" data-dec="1">0<small>kg</small></div>
-      <h3>個人裝備即可完成<br>高效率繩索上升與下降</h3>
-      <p class="ko">개인 장비 1.2kg으로 고효율 로프 등강·하강 완성</p>
+      <div class="kg" data-count="1.3" data-dec="1">0<small>kg</small></div>
+      <h3>個人裝備（含頭盔）即可完成<br>高效率繩索上升與下降</h3>
+      <p class="ko">개인 장비(헬멧 포함) 1.3kg으로 고효율 로프 등강·하강 완성</p>
       <div class="moves"><span>上升 <span class="ko">등강</span></span><span>下降 <span class="ko">하강</span></span><span>轉換 <span class="ko">전환(체인지오버)</span></span></div>
       <div class="card lw-why">因為「難找」，隊員要背著登山裝備與搜救器材長距離穿越、搜索 —— <b class="hl">每一公克都會影響抵達時間</b>。<span class="ko" style="display:block;font-size:15px;margin-top:6px">'찾기 어려움' 때문에 대원들은 등산 장비와 수색구조 장비를 메고 장거리를 이동하며 수색합니다 — 1g의 무게도 도착 시간에 영향을 줍니다.</span></div>
     </div>
   </div>
-  <aside class="notes" data-sec="35"><p>回到「難找」：在台灣，搜救隊員必須背著登山裝備和搜救器材，在山林間長距離穿越和搜索，所以技術裝備的輕量化非常重要。我們個人的輕量化配置，只用 1.2 公斤的器材，就能完成高效率的繩索上升、下降與轉換。</p><p class="ko">다시 '찾기 어려움'으로 돌아가 보겠습니다. 대만에서 수색구조 대원은 등산 장비와 수색구조 장비를 메고 산림 속을 장거리 이동하며 수색해야 합니다. 그래서 기술 장비의 경량화가 매우 중요합니다. 저희의 개인 경량화 구성은 1.2kg의 장비만으로 고효율 로프 등강·하강과 전환(체인지오버)을 해낼 수 있습니다.</p></aside>
+  <aside class="notes" data-sec="35"><p>回到「難找」：在台灣，搜救隊員必須背著登山裝備和搜救器材，在山林間長距離穿越和搜索，所以技術裝備的輕量化非常重要。我們個人的輕量化配置，只用含頭盔在內 1.3 公斤的器材，就能完成高效率的繩索上升、下降與轉換。</p><p class="ko">다시 '찾기 어려움'으로 돌아가 보겠습니다. 대만에서 수색구조 대원은 등산 장비와 수색구조 장비를 메고 산림 속을 장거리 이동하며 수색해야 합니다. 그래서 기술 장비의 경량화가 매우 중요합니다. 저희의 개인 경량화 구성은 헬멧을 포함한 1.3kg의 장비만으로 고효율 로프 등강·하강과 전환(체인지오버)을 해낼 수 있습니다.</p></aside>
 </section>
 
 <!-- ================= P13 團隊 2.4kg ================= -->
@@ -754,7 +755,7 @@ body.mobile #qa-handle > span:nth-child(2),body.mobile #qa-handle .qh-dot{displa
   </button>
   <div class="qa-inner">
     <div style="font-size:19px;font-weight:700;color:var(--accent2);margin-bottom:4px;">匿名提問牆 <span class="live-badge">LIVE</span></div>
-    <div class="ko" style="font-size:15px;margin-bottom:14px;">익명 질문 게시판 — 한국어로 질문해도 됩니다</div>
+    <div class="ko" style="font-size:15px;margin-bottom:4px;">익명 질문 게시판 — 한국어로 질문해도 됩니다</div><div style="font-size:14px;color:var(--ink-3);margin-bottom:14px;">韓文提問會自動翻譯成中文 <span class="ko">· 한국어 질문은 중국어로 자동 번역됩니다</span></div>
     <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
       <input id="qa-input" class="ui-input" type="text" placeholder="輸入問題 / 질문을 입력하세요…" maxlength="120" />
       <button id="qa-btn" class="ui-btn">送出提問 · 보내기</button>
@@ -1113,16 +1114,31 @@ document.querySelectorAll('[data-prevent-swipe]').forEach(el => ['touchstart', '
   document.getElementById('pollReveal').addEventListener('click', e => {
     const on = !document.querySelector('.popt.answer');
     document.querySelector('.popt[data-id="lost"]').classList.toggle('answer', on);
-    e.target.textContent = on ? '正解：迷路 45.17% · 정답: 길 잃음' : '揭曉答案 · 정답 공개';
+    e.target.textContent = on ? '正解：迷路 45.17% · 정답: 길 잃음' : '揭曉答案 · 정답을 공개하겠습니다';
   });
 
   /* ---------- 匿名提問牆 ---------- */
   const qaRef = collection(fdb, SLUG + '_qa');
   const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  /* 韓文提問自動翻成繁體中文（Google 翻譯，失敗時改用 MyMemory） */
+  const hasKo = t => /[\uAC00-\uD7A3\u1100-\u11FF\u3130-\u318F]/.test(t);
+  async function toZh(text) {
+    const q = encodeURIComponent(text);
+    try {
+      const r = await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=ko&tl=zh-TW&dt=t&q=' + q, { signal: AbortSignal.timeout(6000) });
+      if (r.ok) { const j = await r.json(); const t = (j[0] || []).map(x => x[0]).join('').trim(); if (t) return t; }
+    } catch (e) {}
+    try {
+      const r = await fetch('https://api.mymemory.translated.net/get?langpair=ko|zh-TW&q=' + q, { signal: AbortSignal.timeout(6000) });
+      if (r.ok) { const j = await r.json(); const t = (j.responseData && j.responseData.translatedText || '').trim(); if (t) return t; }
+    } catch (e) {}
+    return '';
+  }
+  const pendingZh = new Set();
   window.qaSubmit = async function () {
     const input = document.getElementById('qa-input'), text = input.value.trim(); if (!text) return;
     const btn = document.getElementById('qa-btn'); btn.disabled = true;
-    try { await addDoc(qaRef, { text, likes: 0, created_at: serverTimestamp() }); input.value = ''; } catch (e) { console.error(e); alert('送出失敗，請確認網路連線。'); } finally { btn.disabled = false; }
+    try { const text_zh = hasKo(text) ? await toZh(text) : ''; await addDoc(qaRef, { text, text_zh, likes: 0, created_at: serverTimestamp() }); input.value = ''; } catch (e) { console.error(e); alert('送出失敗，請確認網路連線。'); } finally { btn.disabled = false; }
   };
   document.getElementById('qa-input').addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter' && !e.isComposing) window.qaSubmit(); });
   document.getElementById('qa-btn').addEventListener('click', window.qaSubmit);
@@ -1131,8 +1147,14 @@ document.querySelectorAll('[data-prevent-swipe]').forEach(el => ['touchstart', '
     const items = []; snap.forEach(d => items.push({ id: d.id, ...d.data() }));
     items.sort((a, b) => (b.likes || 0) - (a.likes || 0));
     document.getElementById('qa-list').innerHTML = items.length ? items.map(q =>
-      `<div class="qa-item"><span class="qa-text">${escapeHtml(q.text)}</span><button class="qa-like" onclick="qaLike('${q.id}',${q.likes || 0})">👍 ${q.likes || 0}</button></div>`).join('')
+      `<div class="qa-item"><span class="qa-text">${escapeHtml(q.text)}${q.text_zh ? `<span class="qa-zh">中譯：${escapeHtml(q.text_zh)}</span>` : ''}</span><button class="qa-like" onclick="qaLike('${q.id}',${q.likes || 0})">👍 ${q.likes || 0}</button></div>`).join('')
       : '<div style="color:#667;text-align:center;padding:20px;font-size:16px;">還沒有問題，當第一個發問的人 🙋<br><span class="ko" style="font-size:14px">첫 번째 질문을 남겨 주세요</span></div>';
+    // 送出時翻譯失敗的韓文提問：在這裡補翻並寫回，所有人都看得到
+    items.filter(q => hasKo(q.text) && !q.text_zh && !pendingZh.has(q.id)).forEach(async q => {
+      pendingZh.add(q.id);
+      const zh = await toZh(q.text);
+      if (zh) { try { await updateDoc(doc(fdb, SLUG + '_qa', q.id), { text_zh: zh }); } catch (e) { console.error(e); } }
+    });
   }, e => console.error(e));
   const qaSidebar = document.getElementById('qa-sidebar'), qaOverlay = document.getElementById('qa-overlay');
   window.toggleQA = function (force) {
