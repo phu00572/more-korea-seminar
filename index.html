@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>台灣山難事故與救援方法</title>
+<link rel="icon" href="images/more-logo.png" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/night.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{
+  --bg:#0d1117; --bg-2:#141a2e; --card:rgba(255,255,255,.055); --line:rgba(255,255,255,.1);
+  --ink:#eef3fa; --ink-2:#b9c6d8; --ink-3:#7d8ba3; --ink-4:#45526b;
+  --accent:#ff7a2f;   /* 主強調：救援橘 */
+  --accent2:#4cc9f0;  /* 次強調：天空青 */
+  --t1:40px; --t2:26px; --t3:18px; --t4:14px;
+}
+html,body{background:var(--bg)}
+.reveal-viewport{background:var(--bg)}
+.reveal{font-family:'Noto Sans TC','Noto Sans KR',sans-serif;font-size:18px;color:var(--ink)}
+.reveal .slides{text-align:left}
+.reveal .slides section{box-sizing:border-box}
+.reveal .slides section *{box-sizing:border-box}
+.reveal h1,.reveal h2,.reveal h3,.reveal h4{font-family:'Noto Sans TC','Noto Sans KR',sans-serif;text-transform:none;color:var(--ink);margin:0;letter-spacing:.01em;line-height:1.2;text-shadow:none;font-weight:900}
+.reveal h4{font-weight:700}
+.reveal p{margin:0;line-height:1.55}
+.reveal ul{display:block;margin:0;padding-left:1.1em}
+.reveal section img{margin:0;max-width:none;max-height:none}
+.reveal .progress{color:var(--accent);height:3px}
+.reveal .controls{color:var(--accent)}
+/* 每頁底圖加一層暗罩，確保文字對比 */
+.reveal .backgrounds .slide-background-content::after{content:'';position:absolute;inset:0;background:rgba(7,11,18,.35)}
+
+.mono{font-family:'JetBrains Mono',monospace}
+.hl{color:var(--accent)} .hl2{color:var(--accent2)}
+.inner{width:1180px;margin:0 auto;position:relative}
+.head{margin-bottom:18px}
+.kicker{font:500 var(--t4) 'JetBrains Mono',monospace;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:8px}
+.reveal h2{font-size:var(--t1)}
+.reveal h3{font-size:var(--t2);font-weight:700}
+.ko{font-family:'Noto Sans KR',sans-serif;color:var(--ink-2);font-weight:500}
+.head .ko{font-size:18px;margin-top:6px}
+body.no-ko .ko{display:none !important}
+.body{font-size:var(--t3);line-height:1.6;color:var(--ink-2)}
+.note{font-size:var(--t4);color:var(--ink-3);line-height:1.5}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px}
+.frame{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#05080f}
+.frame img{display:block;width:100%;height:100%;object-fit:cover}
+.frame .tag{position:absolute;left:12px;top:12px;font:700 13.5px 'JetBrains Mono',monospace;letter-spacing:.12em;background:rgba(11,18,32,.78);color:var(--ink);padding:5px 9px;border-radius:7px;border-left:3px solid var(--accent)}
+.zoomable{cursor:zoom-in}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+.btn{font:500 15px 'Noto Sans TC',sans-serif;color:var(--ink-2);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;transition:all .2s}
+.btn:hover{color:var(--ink);border-color:var(--ink-3)}
+.btn.on{color:#111;background:var(--accent);border-color:var(--accent);font-weight:700}
+
+/* ---------- 全域 UI ---------- */
+#section-tag{position:fixed;top:16px;left:24px;z-index:40;font:500 14px 'JetBrains Mono',monospace;letter-spacing:.2em;color:var(--ink-3)}
+#logo{position:fixed;top:12px;right:20px;z-index:40;height:46px;opacity:.85}
+#pageInfo{position:fixed;bottom:14px;right:130px;z-index:40;font:500 14px 'JetBrains Mono',monospace;color:var(--ink-3);letter-spacing:.12em}
+#hint{position:fixed;bottom:14px;left:24px;z-index:40;font:500 13.5px 'JetBrains Mono',monospace;color:var(--ink-4);letter-spacing:.05em}
+#hint b{color:var(--ink-3)}
+
+/* ---------- P1 封面 ---------- */
+.cover h1{font-size:50px;line-height:1.22;max-width:820px;text-shadow:0 2px 18px rgba(0,0,0,.6)}
+.cover .ko{font-size:18px;margin-top:14px}
+.cover .who{margin-top:44px;display:flex;align-items:center;gap:16px}
+.cover .who .bar{width:4px;height:52px;background:var(--accent);border-radius:2px}
+.cover .who .name{font-size:var(--t2);font-weight:700}
+.cover .who .org{font-size:18px;color:var(--ink-2)}
+.join{position:absolute;right:0;bottom:-10px;display:flex;gap:14px;align-items:center;padding:14px 16px;background:rgba(11,18,32,.8)}
+.join .qr{background:#fff;padding:6px;border-radius:8px;width:104px;height:104px}
+.join .qr img,.join .qr canvas{width:92px !important;height:92px !important}
+.join p{font-size:16px;line-height:1.5}
+.join .ko{font-size:14px}
+
+/* ---------- P2 ---------- */
+.big-num{font:700 96px/1 'JetBrains Mono',monospace;color:var(--accent);letter-spacing:-.03em}
+.big-num small{font-size:var(--t2);color:var(--ink);margin-left:6px;font-family:'Noto Sans TC'}
+.mtn-svg{width:100%;max-width:470px;margin-top:12px;display:block}
+.mtn-svg .peak{transform-box:fill-box;transform-origin:bottom;transform:scaleY(0);transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.reveal section.present .mtn-svg .peak{transform:scaleY(1)}
+.reveal section.present .mtn-svg .peak.p2{transition-delay:.35s}
+
+/* ---------- 影片 ---------- */
+.video-wrap{position:relative;width:100%;aspect-ratio:16/9;max-height:560px;margin:0 auto;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#05080f}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000}
+.video-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--ink-3);text-align:center;font-size:18px}
+.video-ph .play{width:72px;height:72px;border-radius:50%;border:2px solid var(--ink-4);display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--ink-3)}
+.video-ph code{font:500 16px 'JetBrains Mono',monospace;color:var(--accent2);background:rgba(76,201,240,.08);padding:5px 11px;border-radius:7px}
+.video-wrap.ready .video-ph{display:none}
+
+/* ---------- 投票 ---------- */
+.poll-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:36px;align-items:center}
+.poll-q{font-size:30px;font-weight:900;line-height:1.35;margin-bottom:6px}
+.poll-opts{display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.popt{display:grid;grid-template-columns:34px 1fr 200px 56px;align-items:center;gap:14px;padding:14px 18px;cursor:pointer;transition:all .25s;font-family:inherit;color:var(--ink);text-align:left;width:100%}
+.popt:hover{border-color:var(--ink-3)}
+.popt .k{width:30px;height:30px;border-radius:50%;border:2px solid var(--ink-4);font:700 16px/26px 'JetBrains Mono',monospace;text-align:center;color:var(--ink-3)}
+.popt .lb{font-size:20px;font-weight:700} .popt .lb .ko{display:block;font-size:14px;font-weight:400}
+.popt .bar{height:10px;border-radius:5px;background:rgba(255,255,255,.08);overflow:hidden}
+.popt .bar i{display:block;height:100%;width:0;background:var(--accent2);border-radius:5px;transition:width .5s}
+.popt .pc{font:700 17px 'JetBrains Mono',monospace;text-align:right;color:var(--ink-2)}
+.popt.mine{border-color:var(--accent2)} .popt.mine .k{background:var(--accent2);border-color:var(--accent2);color:#111}
+.popt.answer{border-color:var(--accent);background:rgba(255,122,47,.12)} .popt.answer .bar i{background:var(--accent)} .popt.answer .pc{color:var(--accent)}
+.poll-meta{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:16px;color:var(--ink-3)}
+.live-badge{display:inline-block;background:#ff4757;color:#fff;padding:2px 8px;border-radius:10px;font:700 13.5px 'JetBrains Mono',monospace;vertical-align:middle;animation:pulse 1.5s infinite;margin-left:8px;letter-spacing:.08em}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+.qr-card{padding:24px;text-align:center}
+.qr-card .qr{background:#fff;padding:10px;border-radius:12px;display:inline-block;width:220px;height:220px}
+.qr-card .qr img,.qr-card .qr canvas{width:200px !important;height:200px !important}
+.qr-card h4{font-size:20px;margin-top:14px}
+.qr-card .ko{font-size:15px;margin-top:4px}
+.qr-card .url{font:500 14px 'JetBrains Mono',monospace;color:var(--accent2);margin-top:10px;word-break:break-all}
+#pollStatus{font-size:14px;color:var(--ink-3)}
+
+/* ---------- P3 / P4 ---------- */
+.p3-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:28px;align-items:stretch}
+.chart-box{position:relative;height:400px;padding:16px 18px 10px}
+.timeline{display:flex;flex-direction:column;gap:12px;justify-content:center}
+.tl{padding:13px 16px;border-left:3px solid var(--ink-4);background:var(--card);border-radius:0 12px 12px 0}
+.tl .yr{font:700 14px 'JetBrains Mono',monospace;color:var(--ink-3);letter-spacing:.1em}
+.tl h4{margin:3px 0 2px;font-size:var(--t3)}
+.tl p{font-size:16px;color:var(--ink-2);line-height:1.45}
+.tl .ko{font-size:14px;margin-top:2px}
+.tl.key{border-left-color:var(--accent)} .tl.key .yr{color:var(--accent)}
+.p4-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:36px;align-items:center}
+.donut-box{position:relative;height:390px}
+.donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.donut-center .v{font:700 38px 'JetBrains Mono',monospace;color:var(--accent)}
+.donut-center .l{font-size:var(--t3);font-weight:700}
+.rank{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+.rank-row{display:grid;grid-template-columns:100px 1fr 80px;align-items:center;gap:12px;cursor:pointer;padding:6px 8px;border-radius:10px;transition:background .2s}
+.rank-row:hover,.rank-row.on{background:var(--card)}
+.rank-row .nm{font-size:var(--t3);font-weight:700}
+.rank-row .nm .ko{display:block;font-size:13.5px;font-weight:400}
+.rank-row .track{height:11px;border-radius:6px;background:rgba(255,255,255,.06);overflow:hidden}
+.rank-row .fill{height:100%;width:0;border-radius:6px;transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+.rank-row .pc{font:700 17px 'JetBrains Mono',monospace;text-align:right}
+.insight{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.insight .card{padding:14px 16px}
+.insight h4{margin:0 0 5px;font-size:18px}
+.insight p{font-size:16px;line-height:1.5;color:var(--ink-2)}
+.insight .ko{font-size:14px;margin-top:5px;line-height:1.4}
+
+/* ---------- P5 三難 ---------- */
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
+.diff{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--bg-2);cursor:pointer;transition:transform .3s,border-color .3s}
+.diff:hover{transform:translateY(-4px);border-color:var(--ink-4)}
+.diff .ph{aspect-ratio:16/10;width:100%;overflow:hidden}
+.diff .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.diff .txt{padding:14px 18px 16px}
+.diff .no{font:700 13.5px 'JetBrains Mono',monospace;color:var(--ink-3);letter-spacing:.15em}
+.diff .w{font-size:36px;font-weight:900;color:var(--accent);line-height:1.15;margin:3px 0}
+.diff .w .ko{font-size:17px;margin-left:8px;color:var(--ink-2)}
+.diff .cause{font-size:18px;line-height:1.45}
+.diff .cause .ko{display:block;font-size:14px;margin-top:2px}
+.diff .sol{margin-top:10px;padding-top:10px;border-top:1px dashed var(--ink-4);font-size:16.5px;color:var(--accent2);line-height:1.45;max-height:0;opacity:0;overflow:hidden;transition:all .45s ease}
+.diff .sol .ko{display:block;font-size:14px;color:var(--ink-2)}
+.diff.open .sol{max-height:120px;opacity:1}
+.diff .tap{position:absolute;right:12px;top:12px;font:700 12px 'JetBrains Mono',monospace;letter-spacing:.12em;background:rgba(11,18,32,.78);padding:4px 8px;border-radius:6px;color:var(--ink-2)}
+.diff.open .tap{color:var(--accent2)}
+
+/* ---------- P6 六大技能（AI 圖標） ---------- */
+.p6-grid{display:grid;grid-template-columns:.9fr 1.3fr;gap:32px;align-items:center}
+.p6-photo{height:440px}
+.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.skill{padding:16px 14px;transition:all .35s ease;position:relative;text-align:center;border-top:3px solid var(--accent2)}
+.reveal .skill img{width:58px;height:58px;object-fit:contain;display:block;margin:0 auto 8px;filter:drop-shadow(0 0 10px rgba(76,201,240,.45))}
+.skill .n{font:700 13.5px 'JetBrains Mono',monospace;color:var(--ink-3);position:absolute;right:12px;top:10px}
+.skill h4{font-size:18px;line-height:1.35}
+.skill .ko{font-size:14px;margin-top:3px}
+.skill .tags{margin-top:8px;display:flex;gap:5px;justify-content:center}
+.skill .tags span{font-size:13.5px;padding:2px 8px;border-radius:999px;border:1px solid var(--ink-4);color:var(--ink-3)}
+.skill.dim{opacity:.22;transform:scale(.97)}
+.skill.lit{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+
+/* ---------- P7 ---------- */
+.lead{font-size:var(--t3);color:var(--ink-2);margin-bottom:18px}
+.lead b{color:var(--accent)}
+.methods{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.method{padding:16px 18px;cursor:pointer;transition:all .25s;background:rgba(11,18,32,.66)}
+.method:hover{border-color:var(--accent);transform:translateY(-3px)}
+.method .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.method .num{font:700 26px 'JetBrains Mono',monospace;color:var(--accent)}
+.method .grp{font-size:13.5px;padding:3px 9px;border-radius:999px;background:rgba(76,201,240,.13);color:var(--accent2)}
+.method h4{margin:0 0 5px;font-size:19px}
+.method p{font-size:16px;color:var(--ink-2);line-height:1.45}
+.method .ko{font-size:14px;margin-top:5px}
+.method .go{margin-top:6px;font:500 13.5px 'JetBrains Mono',monospace;color:var(--ink-3)}
+
+/* ---------- P8 ---------- */
+.phones{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;align-items:end}
+.phone{text-align:center}
+.phone .scr{height:340px;border-radius:14px;overflow:hidden;border:2px solid #2a3550;background:#000;box-shadow:0 14px 34px rgba(0,0,0,.45);transition:transform .25s}
+.phone .scr img{height:100%;width:100%;object-fit:cover;object-position:top}
+.phone:hover .scr{transform:translateY(-6px);border-color:var(--accent)}
+.phone .cap{margin-top:8px;font-size:16px;font-weight:700}
+.phone .cap .ko{display:block;font-size:13.5px;font-weight:400}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);margin-top:22px}
+.flow .st{position:relative;padding:10px 12px 10px 44px;font-size:17px;font-weight:700;border-top:2px solid var(--ink-4)}
+.flow .st::before{content:attr(data-n);position:absolute;left:6px;top:8px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#111;font:700 15px/26px 'JetBrains Mono',monospace;text-align:center}
+.flow .st .ko{display:block;font-size:14px;font-weight:400}
+.flow .st:last-child{border-top-color:var(--accent)}
+
+/* ---------- P9 ---------- */
+.p9-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:30px;align-items:start}
+.vs-box{padding:16px 18px}
+.vs-box svg{width:100%;height:auto;display:block}
+.steps{display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.vs-cap{min-height:56px;font-size:17px;line-height:1.5;margin-top:8px}
+.vs-cap .ko{display:block;font-size:14px;margin-top:2px}
+.p9-photo{height:300px}
+.p9-side .body{font-size:17px;margin-top:12px}
+
+/* ---------- P10 ---------- */
+.p10-grid{display:grid;grid-template-columns:.85fr 1.35fr;gap:28px;align-items:start}
+.p10-topo{height:470px}
+.tabs{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.tab{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;padding:10px 14px;cursor:pointer;transition:all .25s}
+.tab .i{font:700 19px 'JetBrains Mono',monospace;color:var(--ink-3)}
+.tab h4{font-size:18px}
+.tab .ko{font-size:14px;margin-top:2px}
+.tab.on{border-color:var(--accent);background:rgba(255,122,47,.09)}
+.tab.on .i{color:var(--accent)}
+.p10-photo{aspect-ratio:2.2/1}
+.p10-photo img{transition:opacity .35s}
+
+/* ---------- P11 ---------- */
+.p11-grid{display:grid;grid-template-columns:.85fr 1.3fr;gap:32px;align-items:center}
+.p11-photo{height:470px}
+.pas{display:flex;flex-direction:column;gap:9px}
+.lvl{display:grid;grid-template-columns:52px 1fr;gap:14px;padding:12px 16px;cursor:pointer;transition:all .3s}
+.lvl .badge{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font:700 19px 'JetBrains Mono',monospace;color:var(--ink-3);transition:all .3s}
+.lvl h4{font-size:19px} .lvl h4 small{font:500 13.5px 'JetBrains Mono',monospace;color:var(--ink-3);margin-left:8px}
+.lvl .sum{font-size:16.5px;color:var(--ink-2);margin-top:2px}
+.lvl .sum .ko{font-size:14px;display:block}
+.lvl .more{max-height:0;overflow:hidden;opacity:0;transition:all .4s ease}
+.lvl .more ul{margin-top:6px;font-size:16px;color:var(--ink-2);line-height:1.5}
+.lvl .more b{color:var(--accent2)}
+.lvl.on{border-color:var(--accent)}
+.lvl.on .badge{background:var(--accent);color:#111}
+.lvl.on .more{max-height:240px;opacity:1}
+.pas-end{padding:11px 16px;border-radius:12px;background:rgba(76,201,240,.08);border:1px solid rgba(76,201,240,.3);font-size:18px;font-weight:700}
+.pas-end .ko{font-size:14px;font-weight:400;display:block}
+
+/* ---------- P12-13 ---------- */
+.lw-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:34px;align-items:center}
+.lw-photo{aspect-ratio:2400/1340}
+.kg{font:700 92px/1 'JetBrains Mono',monospace;color:var(--accent);letter-spacing:-.04em}
+.kg small{font-size:var(--t2);margin-left:6px;color:var(--ink)}
+.lw-side h3{margin-top:12px}
+.lw-side .ko{font-size:16px;margin-top:5px}
+.lw-why{margin-top:18px;padding:14px 16px;font-size:17px;color:var(--ink-2);line-height:1.55}
+.moves{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.moves span{font-size:15px;padding:5px 12px;border-radius:999px;border:1px solid var(--ink-4)}
+.team{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:18px}
+.mbr{text-align:center;padding:12px 4px;opacity:0;transform:translateY(10px);transition:all .45s ease}
+.reveal section.present .mbr{opacity:1;transform:none}
+.mbr svg{width:34px;height:34px;stroke:var(--accent2);fill:none;stroke-width:1.8;stroke-linecap:round}
+.mbr b{display:block;font:700 18px 'JetBrains Mono',monospace;margin-top:4px}
+.sum-line{margin-top:14px;font-size:var(--t3);color:var(--ink-2)}
+.sum-line b{font:700 28px 'JetBrains Mono',monospace;color:var(--accent)}
+
+/* ---------- P14 搜救A 器材表 ---------- */
+.p14-grid{display:grid;grid-template-columns:.8fr 1.55fr;gap:26px;align-items:start}
+.p14-photo{aspect-ratio:4/3}
+.p14-total{margin-top:12px;padding:12px 14px}
+.p14-total .t{font:700 30px 'JetBrains Mono',monospace;color:var(--accent)}
+.p14-total .t small{font-size:17px;color:var(--ink);margin-left:4px}
+.p14-total p{font-size:14.5px;color:var(--ink-3);line-height:1.45}
+.comp{display:flex;height:12px;border-radius:6px;overflow:hidden;margin:10px 0 4px}
+.comp i{display:block;height:100%;cursor:pointer;transition:opacity .2s}
+.groups{columns:2;column-gap:16px}
+.grp{break-inside:avoid;margin-bottom:10px;padding:10px 12px;transition:all .25s}
+.grp.on{border-color:var(--accent);background:rgba(255,122,47,.08)}
+.grp h4{font-size:16.5px;display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.grp h4 .sw{width:10px;height:10px;border-radius:3px;display:inline-block}
+.grp h4 .w{margin-left:auto;font:700 14.5px 'JetBrains Mono',monospace;color:var(--ink-2)}
+.grp h4 .ko{font-size:13.5px;font-weight:400}
+.it{display:grid;grid-template-columns:1fr auto;gap:8px;font-size:14.5px;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.05);color:var(--ink-2);line-height:1.35}
+.it:last-child{border-bottom:none}
+.it b{color:var(--ink);font-weight:500}
+.it em{font-style:normal;color:var(--ink-3);font-size:13.5px}
+.it span{font:500 14px 'JetBrains Mono',monospace;color:var(--ink-3);white-space:nowrap}
+
+/* ---------- P15 ---------- */
+.row-label{display:flex;align-items:baseline;gap:12px;margin:0 0 10px}
+.row-label h3{font-size:21px}
+.row-label .ko{font-size:15px}
+.prin{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
+.prin .card{padding:18px 18px;display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:start;min-height:104px}
+.prin .n{width:38px;height:38px;border-radius:50%;border:2px solid var(--accent);color:var(--accent);font:700 18px/34px 'JetBrains Mono',monospace;text-align:center}
+.prin.core .n{border-color:var(--accent2);color:var(--accent2)}
+.prin h4{font-size:19px;line-height:1.4}
+.prin h4 small{display:block;font-size:15.5px;color:var(--ink-3);font-weight:500;margin-top:2px}
+.prin .ko{font-size:14.5px;margin-top:4px}
+
+/* ---------- 結尾 ---------- */
+.end{text-align:center}
+.end .thx{font-size:84px;font-weight:900;font-family:'Noto Sans KR'}
+.end .thx2{font-size:var(--t2);color:var(--ink-2);margin-top:4px}
+.end img{height:150px;margin-top:30px !important;opacity:.95}
+
+/* ---------- 講稿面板 / 燈箱 ---------- */
+#notes{position:fixed;right:18px;bottom:40px;width:min(580px,90vw);z-index:60;background:rgba(10,15,28,.96);border:1px solid var(--line);border-radius:14px;padding:14px 18px;display:none;box-shadow:0 20px 50px rgba(0,0,0,.5);font-family:'Noto Sans TC',sans-serif}
+#notes.show{display:block}
+#notes .meta{display:flex;justify-content:space-between;font:500 14px 'JetBrains Mono',monospace;color:var(--ink-3);margin-bottom:8px}
+#notes .meta .tm{color:var(--accent2)} #notes .meta .tm.over{color:var(--accent)}
+#notes .txt{font-size:18px;line-height:1.7;color:var(--ink);max-height:48vh;overflow:auto}
+#notes .txt p{margin:0}
+#notes .txt p.ko{margin-top:10px;padding-top:10px;border-top:1px dashed var(--ink-4);font-size:16px;line-height:1.65;color:var(--ink-2)}
+#lightbox{position:fixed;inset:0;z-index:2000;background:rgba(3,6,12,.94);display:none;align-items:center;justify-content:center;cursor:zoom-out;padding:30px}
+#lightbox.show{display:flex}
+#lightbox img{max-width:100%;max-height:100%;border-radius:10px}
+
+/* ---------- 互動通用 ---------- */
+.ui-input{width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(76,201,240,.3);background:rgba(255,255,255,.08);color:#fff;font-size:16px;box-sizing:border-box;font-family:inherit;outline:none}
+.ui-btn{padding:10px 14px;background:var(--accent2);color:#0d1117;border:none;border-radius:8px;font-weight:700;font-size:16px;cursor:pointer;font-family:inherit}
+.ui-btn:disabled{opacity:.5;cursor:default}
+.qa-item{background:rgba(255,255,255,.06);border-left:3px solid var(--accent);border-radius:8px;padding:10px 12px;margin-bottom:8px;font-size:16px;display:flex;align-items:center;gap:10px}
+.qa-text{flex:1;color:#eee;line-height:1.5;text-align:left;word-break:break-word}
+.qa-like{flex:0 0 auto;background:rgba(255,122,47,.15);border:1px solid rgba(255,122,47,.4);color:var(--accent);border-radius:20px;padding:4px 10px;cursor:pointer;font-size:15px;font-family:inherit;white-space:nowrap}
+
+/* ---------- 全域提問牆側邊欄 ---------- */
+#qa-sidebar{position:fixed;top:0;left:0;height:100vh;width:360px;background:linear-gradient(180deg,#141a2e,#0d1117);border-right:1px solid rgba(76,201,240,.25);box-shadow:6px 0 30px rgba(0,0,0,.55);transform:translateX(-100%);transition:transform .35s ease;z-index:1000;font-family:'Noto Sans TC','Noto Sans KR',sans-serif;color:var(--ink)}
+@media (max-width:380px){#qa-sidebar{width:300px}}
+#qa-sidebar.open{transform:translateX(0)}
+#qa-sidebar .qa-inner{display:flex;flex-direction:column;height:100%;padding:24px 18px;box-sizing:border-box}
+#qa-handle{position:absolute;right:-44px;top:50%;transform:translateY(-50%);width:44px;padding:16px 0;background:var(--accent);color:#fff;border:none;border-radius:0 12px 12px 0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;font-family:inherit;box-shadow:3px 0 12px rgba(0,0,0,.4)}
+#qa-handle .qh-dot{width:7px;height:7px;border-radius:50%;background:#fff;animation:pulse 1.5s infinite}
+#qa-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .35s;z-index:999}
+#qa-overlay.show{opacity:1;pointer-events:auto}
+
+/* ---------- 📱 手機：翻頁＋頁內捲動 ---------- */
+body.mobile .reveal .slides > section.present,
+body.mobile .reveal .slides > section.past,
+body.mobile .reveal .slides > section.future{height:100%;box-sizing:border-box;display:flex;flex-direction:column;justify-content:safe center;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:16px 12px 64px;scrollbar-width:none}
+body.mobile .reveal .slides > section::-webkit-scrollbar{display:none}
+body.mobile .reveal .controls{right:10px;bottom:10px}
+body.mobile .reveal .controls .controls-arrow{width:52px;height:52px}
+body.mobile .inner{width:100%}
+body.mobile .grid2,body.mobile .p3-grid,body.mobile .p4-grid,body.mobile .p6-grid,body.mobile .p9-grid,body.mobile .p10-grid,body.mobile .p11-grid,body.mobile .lw-grid,body.mobile .p14-grid,body.mobile .poll-grid{grid-template-columns:1fr;gap:16px}
+body.mobile .three,body.mobile .methods,body.mobile .prin,body.mobile .flow,body.mobile .insight{grid-template-columns:1fr}
+body.mobile .skills,body.mobile .phones,body.mobile .chips{grid-template-columns:1fr 1fr}
+body.mobile .team{grid-template-columns:repeat(5,1fr)}
+body.mobile .groups{columns:1}
+body.mobile .popt{grid-template-columns:30px 1fr 50px}
+body.mobile .popt .bar{grid-column:2/4;grid-row:2}
+body.mobile .popt .pc{grid-column:3;grid-row:1}
+body.mobile .qr-card,body.mobile .join{display:none}
+body.mobile .reveal h2{font-size:30px} body.mobile .cover h1{font-size:30px}
+body.mobile .big-num,body.mobile .kg{font-size:64px}
+body.mobile .p6-photo,body.mobile .p10-topo,body.mobile .p11-photo{height:240px}
+body.mobile .phone .scr{height:260px}
+body.mobile .chart-box,body.mobile .donut-box{height:300px}
+body.mobile .join{position:static;margin-top:20px}
+body.mobile .ui-input{font-size:18px}
+body.mobile #hint,body.mobile #notes,body.mobile #section-tag,body.mobile #pageInfo{display:none !important}
+body.mobile #logo{height:34px}
+body.mobile #qa-handle{top:auto;bottom:16px;right:-48px;transform:none;width:48px;height:48px;padding:0;border-radius:50%;justify-content:center;align-items:center}
+body.mobile #qa-handle > span:nth-child(2),body.mobile #qa-handle .qh-dot{display:none}
+</style>
+</head>
+<body>
+<div id="section-tag"></div>
+<img id="logo" src="images/more-logo-white.png" alt="MoRE">
+<div id="pageInfo"></div>
+<div id="hint"><b>← →</b> 切頁 · <b>F</b> 全螢幕 · <b>K</b> 韓文字幕 · <b>N</b> 講稿／計時 · <b>S</b> 講者視窗</div>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ================= P1 封面 ================= -->
+<section data-page="1" data-section="引起動機" data-background-image="images/cover.jpg" data-background-opacity="0.55" data-background-size="cover">
+  <div class="inner cover">
+    <div class="kicker">2026 Korea–Taiwan Online Seminar</div>
+    <h1>台灣山難事故及高風險環境<br>發生案例與救援方法</h1>
+    <p class="ko">대만 산악사고 및 고위험 환경 사례와 구조 방법</p>
+    <div class="who"><div class="bar"></div><div>
+      <div class="name">尤翰彬 <span style="font-size:18px;color:var(--ink-2);font-weight:500">執行長</span></div>
+      <div class="org">台灣山域搜救技能交流（MoRE）<span class="ko" style="font-size:15px;margin-left:8px">대만 산악 수색구조 기술교류 대표</span></div>
+    </div></div>
+    <div class="card join"><div class="qr" id="qr-cover"></div><div><p><b>掃描加入互動</b><br>投票・匿名提問</p><p class="ko">QR 스캔 → 투표·익명 질문 참여</p></div></div>
+  </div>
+  <aside class="notes" data-sec="20"><p>大家好，我是台灣山域搜救技能交流 MoRE 的執行長尤翰彬。很高興今天能在線上和韓國的朋友交流。歡迎大家先用手機掃右下角的 QR code，等一下有投票，也可以隨時匿名提問。今天我想用大約十分鐘，分享台灣山域事故的特性，以及我們在搜索與救援上發展出的做法。</p><p class="ko">안녕하십니까. 대만 산악 수색구조 기술교류(MoRE) 대표 우한빈(尤翰彬)입니다. 오늘 온라인으로 한국 여러분과 교류하게 되어 기쁩니다. 먼저 휴대폰으로 오른쪽 아래의 QR 코드를 스캔해 주십시오. 잠시 후 투표가 있고, 언제든지 익명으로 질문하실 수 있습니다. 오늘은 약 10분 동안 대만 산악사고의 특성과, 저희가 수색·구조 현장에서 발전시켜 온 방법을 공유하겠습니다.</p></aside>
+</section>
+
+<!-- ================= P2 群山之島 ================= -->
+<section data-page="2" data-section="引起動機" data-background-image="images/bg-island.jpg" data-background-opacity="0.22" data-background-size="cover">
+  <div class="inner grid2" style="grid-template-columns:1fr 1.05fr">
+    <div>
+      <div class="head">
+        <div class="kicker">01 · Island of Mountains</div>
+        <h2>群山之島（台灣）</h2>
+        <p class="ko">산들의 섬, 대만</p>
+      </div>
+      <div class="big-num" data-count="268">0<small>座</small></div>
+      <p class="body" style="margin-top:6px">海拔 <b class="hl">3,000 公尺</b>以上的高山<span class="ko" style="display:block;font-size:16px">해발 3,000m 이상의 고봉 268개</span></p>
+      <svg class="mtn-svg" viewBox="0 0 540 272" aria-label="台灣東西向地形剖面示意">
+        <text x="0" y="14" fill="#7d8ba3" font-size="13">東西向地形剖面（垂直比例放大示意）· 동서 단면 모식도(수직 과장)</text>
+        <line x1="0" y1="210" x2="540" y2="210" stroke="#4cc9f0" stroke-opacity=".5" stroke-width="1.5"/>
+        <line x1="20" y1="78" x2="520" y2="78" stroke="#ff7a2f" stroke-width="1.5" stroke-dasharray="6 6"/>
+        <text x="520" y="70" fill="#ff7a2f" font-size="14" text-anchor="end" font-family="JetBrains Mono">3,000 m</text>
+        <polygon class="peak" points="30,210 90,206 140,198 180,184 215,165 245,140 270,118 292,92 310,66 325,46 338,36 352,52 366,47 382,72 398,62 416,96 436,128 456,160 478,190 500,210" fill="#ff7a2f" fill-opacity=".28" stroke="#ff7a2f" stroke-width="2"/>
+        <text x="338" y="30" fill="#eef3fa" font-size="15" text-anchor="middle" font-weight="700">玉山 3,952 m · 위산</text>
+        <text x="30" y="230" fill="#b9c6d8" font-size="14" text-anchor="middle">西 서</text>
+        <text x="500" y="230" fill="#b9c6d8" font-size="14" text-anchor="middle">東 동</text>
+        <line x1="62" y1="226" x2="468" y2="226" stroke="#4cc9f0" stroke-width="1.5"/>
+        <path d="M62,226 l8,-4 v8 z M468,226 l-8,-4 v8 z" fill="#4cc9f0"/>
+        <text x="265" y="252" fill="#4cc9f0" font-size="15" text-anchor="middle" font-weight="700">東西最寬約 144 km</text>
+        <text x="265" y="270" fill="#b9c6d8" font-size="13" text-anchor="middle">동서 최대 폭 약 144km</text>
+      </svg>
+    </div>
+    <div class="frame" style="height:560px"><img src="images/p2-ridge.jpg" alt="台灣高山稜線"><span class="tag">TAIWAN · 3,000 m+</span></div>
+  </div>
+  <aside class="notes" data-sec="40"><p>台灣是一座群山之島。南北長約 394 公里，東西最寬的地方也只有約 144 公里，是一個相對狹窄的島嶼；但就在這麼窄的土地上，聳立著 268 座海拔三千公尺以上的高山，最高的玉山達到 3,952 公尺。從海岸線到三千公尺的稜線，水平距離往往只有幾十公里，所以地形特別陡峭、溪谷深切，這也是台灣山域救援困難的背景。接下來請大家先看一段台灣山林的影片。</p><p class="ko">대만은 '산들의 섬'입니다. 남북 길이는 약 394km, 동서로 가장 넓은 곳도 약 144km에 불과한 비교적 좁은 섬입니다. 그러나 이 좁은 땅에 해발 3,000m 이상의 고봉이 268개나 솟아 있고, 최고봉인 위산(玉山)은 3,952m에 이릅니다. 해안선에서 3,000m 능선까지의 수평 거리가 수십 km에 불과한 경우가 많아 지형이 매우 가파르고 계곡이 깊게 패어 있습니다. 이것이 대만 산악구조가 어려운 배경입니다. 이어서 대만 산림 영상을 먼저 보시겠습니다.</p></aside>
+</section>
+
+<!-- ================= 影片 1 ================= -->
+<section data-page="V1" data-section="引起動機" data-background-color="#0d1117">
+  <div class="inner">
+    <div class="head"><div class="kicker">Video 1 · 影片</div><h3>台灣山林之美 <span class="ko" style="font-size:18px">· 대만 산림의 아름다움</span></h3></div>
+    <div class="video-wrap" data-yt="V1">
+      <div class="video-ph"><div class="play">▶</div><div>尚未設定 YouTube 連結</div><code>YOUTUBE.V1</code><div class="note">在 index.html 開頭的 YOUTUBE 設定區貼上連結</div></div></div>
+  </div>
+  <aside class="notes" data-sec="0"><p>（播放台灣山林影片。空白鍵播放／暫停，播完按 → 繼續。若點過影片畫面，請先點影片外的空白處，鍵盤才會回到簡報。）</p><p class="ko">(대만 산림 영상 재생. 스페이스 키로 재생/일시정지, 끝나면 → 키로 다음 페이지. 영상 화면을 클릭했다면 영상 밖의 빈 곳을 한 번 클릭해야 키보드가 슬라이드로 돌아옵니다.)</p></aside>
+</section>
+
+<!-- ================= 投票：先猜再看 ================= -->
+<section id="poll" data-page="Q" data-section="引起動機" data-background-image="images/bg-data.jpg" data-background-opacity="0.18" data-background-size="cover">
+  <div class="inner poll-grid">
+    <div>
+      <div class="kicker">Live Poll · 先猜再看 <span class="live-badge">LIVE</span></div>
+      <p class="poll-q">在台灣山域事故中，<br>人數最多的原因是？</p>
+      <p class="ko" style="font-size:18px">대만 산악사고에서 가장 많은 원인은 무엇일까요?</p>
+      <div class="poll-opts" id="poll-options">
+        <button class="card popt" data-id="lost"><span class="k">A</span><span class="lb">迷路<span class="ko">길 잃음</span></span><span class="bar"><i></i></span><span class="pc">0%</span></button>
+        <button class="card popt" data-id="fall"><span class="k">B</span><span class="lb">墜落・墜谷<span class="ko">추락</span></span><span class="bar"><i></i></span><span class="pc">0%</span></button>
+        <button class="card popt" data-id="ill"><span class="k">C</span><span class="lb">疾病・高山症<span class="ko">질병·고산병</span></span><span class="bar"><i></i></span><span class="pc">0%</span></button>
+        <button class="card popt" data-id="weather"><span class="k">D</span><span class="lb">天候惡劣<span class="ko">악천후</span></span><span class="bar"><i></i></span><span class="pc">0%</span></button>
+      </div>
+      <div class="poll-meta"><span>已投票：<b id="poll-total" class="hl2">0</b> 人（可點選改票）<span class="ko" style="font-size:14px"> · 투표 인원 (다시 눌러 변경 가능)</span></span><button class="btn" id="pollReveal">揭曉答案 · 정답 공개</button></div>
+      <div id="pollStatus"></div>
+    </div>
+    <div class="card qr-card"><div class="qr" id="qr-poll"></div><h4>手機掃描即可投票</h4><p class="ko">휴대폰으로 QR 코드를 스캔해 투표하세요</p><div class="url" id="qr-url"></div></div>
+  </div>
+  <aside class="notes" data-sec="40"><p>在看數據之前，先請大家猜一猜：在台灣的山域事故裡，人數最多的原因是什麼？請用手機掃 QR code 投票。（等 15～20 秒）好，我們來看結果……（按「揭曉答案」）答案是迷路。下一頁看實際的數字。</p><p class="ko">데이터를 보기 전에 먼저 맞혀 보시죠. 대만 산악사고에서 인원 기준으로 가장 많은 원인은 무엇일까요? 휴대폰으로 QR 코드를 스캔해 투표해 주십시오. (15~20초 대기) 자, 결과를 보겠습니다… ('정답 공개' 클릭) 정답은 '길 잃음'입니다. 다음 페이지에서 실제 수치를 보겠습니다.</p></aside>
+</section>
+
+<!-- ================= P3 趨勢 ================= -->
+<section id="slide-trend" data-page="3" data-section="引起動機" data-background-image="images/bg-data.jpg" data-background-opacity="0.14" data-background-size="cover">
+  <div class="inner">
+    <div class="head" style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px">
+      <div><div class="kicker">02 · Accident Trend</div><h2>事故趨勢居高不下</h2><p class="ko">산악사고 추세 — 여전히 높은 수준 유지</p></div>
+      <button class="btn" id="yrToggle">切換：民國年</button>
+    </div>
+    <div class="p3-grid">
+      <div class="card chart-box"><canvas id="trendChart"></canvas></div>
+      <div class="timeline">
+        <div class="tl"><div class="yr">2020 ↑</div><h4>事故大幅增加</h4><p>山林開放政策＋疫情帶動國內旅遊</p><p class="ko">사고 급증 — 산림 개방 정책·코로나19로 국내 여행 증가</p></div>
+        <div class="tl"><div class="yr">2021–22 ↓</div><h4>短暫下降</h4><p>疫情三級警戒、入山管制</p><p class="ko">일시 감소 — 방역 3단계 경계·입산 통제</p></div>
+        <div class="tl key"><div class="yr">2023 → NOW</div><h4>解封後仍處高原期</h4><p>每年仍有 700 人以上受困、受傷</p><p class="ko">높은 수준 지속 — 방역 해제 후에도 매년 700명 이상 고립·부상</p></div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:10px">資料來源：消防署山域事故救援管理平台（114 年 8 月 2 日下載）；2025 年統計至 7 月。僅代表案件數與人數，無法代表發生比例。<span class="ko" style="display:block">자료: 대만 소방서 산악사고 구조관리 플랫폼(2025.8.2 기준), 2025년은 7월까지. 건수·인원 기준이며 발생률을 의미하지 않음.</span></p>
+  </div>
+  <aside class="notes" data-sec="35"><p>這是 2015 年到 2025 年的山域事故統計，長條是發生人數，折線是案件數。2020 年後因為山林開放政策和疫情帶動國內旅遊，事故大幅增加；2021、2022 年因三級警戒和入山管制短暫下降；解封之後，整體仍維持在每年 700 人以上的高原期。</p><p class="ko">2015년부터 2025년까지의 산악사고 통계입니다. 막대는 사고 인원, 꺾은선은 사고 건수입니다. 2020년 이후 산림 개방 정책과 코로나19로 인한 국내 여행 증가로 사고가 크게 늘었고, 2021~2022년에는 방역 3단계 경계와 입산 통제로 일시적으로 줄었습니다. 방역 해제 이후에도 매년 700명 이상이 발생하는 높은 수준이 이어지고 있습니다.</p></aside>
+</section>
+
+<!-- ================= P4 原因 ================= -->
+<section id="slide-cause" data-page="4" data-section="引起動機" data-background-image="images/bg-data.jpg" data-background-opacity="0.14" data-background-size="cover">
+  <div class="inner">
+    <div class="head"><div class="kicker">03 · Accident Causes · 2015–2024 · N = 4,994</div><h2>迷路佔了近一半</h2><p class="ko">사고 원인의 절반 가까이가 '길 잃음'</p></div>
+    <div class="p4-grid">
+      <div class="donut-box"><canvas id="causeChart"></canvas><div class="donut-center"><div class="v" id="dcV">45.17%</div><div class="l" id="dcL">迷路</div></div></div>
+      <div>
+        <div class="rank">
+          <div class="rank-row on" data-i="0"><div class="nm">迷路<span class="ko">길 잃음</span></div><div class="track"><div class="fill" style="background:var(--accent)" data-w="45.17"></div></div><div class="pc hl">45.17%</div></div>
+          <div class="rank-row" data-i="1"><div class="nm">創傷<span class="ko">외상</span></div><div class="track"><div class="fill" style="background:var(--accent2)" data-w="15.76"></div></div><div class="pc hl2">15.76%</div></div>
+          <div class="rank-row" data-i="2"><div class="nm">墜谷<span class="ko">추락</span></div><div class="track"><div class="fill" style="background:rgba(76,201,240,.5)" data-w="7.33"></div></div><div class="pc">7.33%</div></div>
+        </div>
+        <div class="insight">
+          <div class="card"><h4 class="hl">迷路 →</h4><p>提升定位裝備與技能、增設防迷措施；事故由高山轉向中級山及郊山</p><p class="ko">위치 확인 장비·기술 강화, 길 잃음 방지 시설 확충 — 사고가 고산에서 중간 고도의 산·근교산으로 이동</p></div>
+          <div class="card"><h4 class="hl2">創傷 →</h4><p>關注高齡族群、直升機易被動用；宣導安全觀念、技能及體能訓練</p><p class="ko">고령층 주목, 헬기 출동이 잦음 — 안전 의식·기술·체력 훈련 홍보</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:8px">以發生人數計，104–113 年（2015–2024）。點選右側排名可對照圓餅圖。資料來源：山域事故原因統計及質性分析。<span class="ko" style="display:block">발생 인원 기준, 2015–2024년. 자료: 산악사고 원인 통계 및 질적 분석.</span></p>
+  </div>
+  <aside class="notes" data-sec="30"><p>答案揭曉：以 2015 到 2024 年近五千人來看，迷路佔 45%，接近一半；其次是創傷 16%、墜谷 7%。迷路事故也從高山轉向中級山和郊山。接下來這段影片，是我們實際的山域事故救援畫面。</p><p class="ko">정답입니다. 2015~2024년 약 5,000명을 기준으로 보면 길 잃음이 45%로 거의 절반을 차지하고, 이어서 외상 16%, 추락 7% 순입니다. 길 잃음 사고는 고산에서 중간 고도의 산과 근교산으로 옮겨 가고 있습니다. 이어지는 영상은 저희의 실제 산악사고 구조 장면입니다.</p></aside>
+</section>
+
+<!-- ================= 影片 2 ================= -->
+<section data-page="V2" data-section="引起動機" data-background-color="#0d1117">
+  <div class="inner">
+    <div class="head"><div class="kicker">Video 2 · 影片</div><h3>山域事故救援實況 <span class="ko" style="font-size:18px">· 산악사고 구조 현장</span></h3></div>
+    <div class="video-wrap" data-yt="V2">
+      <div class="video-ph"><div class="play">▶</div><div>尚未設定 YouTube 連結</div><code>YOUTUBE.V2</code><div class="note">在 index.html 開頭的 YOUTUBE 設定區貼上連結</div></div></div>
+  </div>
+  <aside class="notes" data-sec="0"><p>（播放山域事故救援影片。空白鍵播放／暫停，播完按 → 繼續。若點過影片畫面，請先點影片外的空白處，鍵盤才會回到簡報。）</p><p class="ko">(산악사고 구조 영상 재생. 스페이스 키로 재생/일시정지, 끝나면 → 키로 다음 페이지. 영상 화면을 클릭했다면 영상 밖의 빈 곳을 한 번 클릭해야 키보드가 슬라이드로 돌아옵니다.)</p></aside>
+</section>
+
+<!-- ================= P5 三難 ================= -->
+<section data-page="5" data-section="維持注意" data-background-image="images/bg-challenge.jpg" data-background-opacity="0.2" data-background-size="cover">
+  <div class="inner">
+    <div class="head"><div class="kicker">04 · Three Challenges</div><h2>難找・難到・難救</h2><p class="ko">찾기 어렵고 · 도달하기 어렵고 · 구조하기 어렵다</p></div>
+    <div class="three">
+      <div class="diff"><span class="tap">CLICK → 對策</span><div class="ph"><img src="images/p5-hard-find.jpg" alt="難找"></div><div class="txt"><div class="no">01 · HARD TO FIND</div><div class="w">難找<span class="ko">찾기 어려움</span></div><p class="cause">民眾知能不足，行蹤難以掌握<span class="ko">등산객의 지식·역량 부족 · 행적 파악 곤란</span></p><p class="sol">對策｜第一時間掌握與策略派遣，降低動員人力<span class="ko">초기 파악·전략적 출동 → 동원 인력 절감</span></p></div></div>
+      <div class="diff"><span class="tap">CLICK → 對策</span><div class="ph"><img src="images/p5-hard-reach.jpg" alt="難到"></div><div class="txt"><div class="no">02 · HARD TO REACH</div><div class="w">難到<span class="ko">도달 어려움</span></div><p class="cause">山域地形崎嶇，行進多生延遲<span class="ko">험준한 지형 · 잦은 이동 지연</span></p><p class="sol">對策｜輕量化裝備與適時引導，加速動員效率<span class="ko">경량화 장비·적시 유도 → 출동 효율 향상</span></p></div></div>
+      <div class="diff"><span class="tap">CLICK → 對策</span><div class="ph"><img src="images/p5-hard-rescue.jpg" alt="難救"></div><div class="txt"><div class="no">03 · HARD TO RESCUE</div><div class="w">難救<span class="ko">구조 어려움</span></div><p class="cause">事故地點困難，尚待技術提升<span class="ko">사고 지점 접근 곤란 · 기술 향상 필요</span></p><p class="sol">對策｜規律訓練、研討及策進，推動山域救援專業化<span class="ko">정기 훈련·연구·개선 → 산악구조 전문화</span></p></div></div>
+    </div>
+  </div>
+  <aside class="notes" data-sec="45"><p>從這些案例，我們把台灣山域救援歸納成三個難處：難找、難到、難救。難找，是因為民眾知能不足、行蹤難以掌握；難到，是因為地形崎嶇、行進容易延遲；難救，是因為事故地點困難，需要更高的技術。（點卡片顯示對策）對應的策略分別是：第一時間掌握與策略派遣、輕量化裝備、以及規律訓練與專業化。</p><p class="ko">이러한 사례를 바탕으로 대만 산악구조의 어려움을 세 가지로 정리했습니다. 찾기 어렵고, 도달하기 어렵고, 구조하기 어렵다는 것입니다. 찾기 어려운 것은 등산객의 지식·역량이 부족하고 행적을 파악하기 어렵기 때문이고, 도달하기 어려운 것은 지형이 험해 이동이 자주 지연되기 때문이며, 구조하기 어려운 것은 사고 지점의 조건이 까다로워 더 높은 기술이 필요하기 때문입니다. (카드를 클릭해 대책 표시) 각각의 대책은 초기 파악과 전략적 출동, 경량화 장비, 그리고 정기 훈련을 통한 전문화입니다.</p></aside>
+</section>
+
+<!-- ================= P6 六大技能 ================= -->
+<section data-page="6" data-section="維持注意" data-background-image="images/bg-challenge.jpg" data-background-opacity="0.14" data-background-size="cover">
+  <div class="inner">
+    <div class="head"><div class="kicker">05 · Six Core Skills</div><h2>複合型山域技能</h2><p class="ko">복합 산악구조 역량 — 6대 핵심 기술</p></div>
+    <div class="p6-grid">
+      <div class="frame p6-photo"><img src="images/p6-skills.jpg" alt="山域搜救團隊"><span class="tag">MoRE · 6 SKILLS</span></div>
+      <div>
+        <div class="chips"><button class="btn on" data-f="all">全部 <span class="ko">전체</span></button><button class="btn" data-f="find">難找 <span class="ko">찾기</span></button><button class="btn" data-f="reach">難到 <span class="ko">도달</span></button><button class="btn" data-f="rescue">難救 <span class="ko">구조</span></button></div>
+        <div class="skills">
+          <div class="card skill" data-t="find"><span class="n">01</span><img src="images/icon_map.png" alt=""><h4>地圖判讀<br>搜索分析</h4><p class="ko">지도 판독·수색 분석</p><div class="tags"><span>難找</span></div></div>
+          <div class="card skill" data-t="reach"><span class="n">02</span><img src="images/icon_terrain.png" alt=""><h4>困難地形<br>通過</h4><p class="ko">험지 통과</p><div class="tags"><span>難到</span></div></div>
+          <div class="card skill" data-t="rescue"><span class="n">03</span><img src="images/icon_rope.png" alt=""><h4>團隊繩索<br>技能</h4><p class="ko">팀 로프 기술</p><div class="tags"><span>難救</span></div></div>
+          <div class="card skill" data-t="find reach rescue"><span class="n">04</span><img src="images/icon_alert.png" alt=""><h4>緊急狀況<br>處置</h4><p class="ko">긴급 상황 대처</p><div class="tags"><span>全程 전 과정</span></div></div>
+          <div class="card skill" data-t="reach"><span class="n">05</span><img src="images/icon_tent.png" alt=""><h4>營地<br>整備</h4><p class="ko">야영지 정비</p><div class="tags"><span>難到</span></div></div>
+          <div class="card skill" data-t="rescue"><span class="n">06</span><img src="images/icon_firstaid.png" alt=""><h4>野外緊急<br>救護</h4><p class="ko">야외 응급처치</p><div class="tags"><span>難救</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes" data-sec="35"><p>因應這三個難處，搜救隊員需要複合型的山域技能，我們分成六大項：地圖判讀與搜索分析、困難地形通過、團隊繩索技能、緊急狀況處置、營地整備，以及野外緊急救護。（可點上方按鈕，看每個難處對應哪些技能。）</p><p class="ko">이 세 가지 어려움에 대응하려면 수색구조 대원에게 복합적인 산악 역량이 필요합니다. 저희는 이를 여섯 가지로 나눕니다. 지도 판독·수색 분석, 험지 통과, 팀 로프 기술, 긴급 상황 대처, 야영지 정비, 그리고 야외 응급처치입니다. (위쪽 버튼을 누르면 각 어려움에 대응하는 기술을 볼 수 있습니다.)</p></aside>
+</section>
+
+<!-- ================= P7 搜索手法 ================= -->
+<section data-page="7" data-section="維持注意" data-background-image="images/p7-search-tech.jpg" data-background-opacity="0.4" data-background-size="cover">
+  <div class="inner">
+    <div class="head"><div class="kicker">06 · Search Methods</div><h2>最大挑戰：難找</h2><p class="ko">가장 큰 과제: '찾기 어려움'</p></div>
+    <p class="lead">迷路佔事故近半 → MoRE 發展出 <b>六種搜索手法</b>，把搜索範圍從「整座山」縮小到「熱區」<span class="ko" style="display:block;font-size:16px;margin-top:4px">길 잃음이 사고의 절반 가까이 → MoRE는 6가지 수색 기법으로 수색 범위를 '산 전체'에서 '핫존(집중 수색 구역)'으로 좁힙니다</span></p>
+    <div class="methods">
+      <div class="card method" data-go="8"><div class="top"><span class="num">01</span><span class="grp">主動定位 <span class="ko">능동 위치 확인</span></span></div><h4>引導式手機定位</h4><p>Google Map／Apple 地圖／LINE／App／簡訊／網頁定位</p><p class="ko">유도식 휴대폰 위치 확인</p><div class="go">→ P.08</div></div>
+      <div class="card method" data-go="8"><div class="top"><span class="num">02</span><span class="grp">主動定位 <span class="ko">능동 위치 확인</span></span></div><h4>遺失手機定位</h4><p>運用 Android／iPhone「尋找裝置」功能</p><p class="ko">분실 휴대폰 찾기 기능 활용</p><div class="go">→ P.08</div></div>
+      <div class="card method"><div class="top"><span class="num">03</span><span class="grp">被動情資 <span class="ko">수동 정보 수집</span></span></div><h4>情資收集</h4><p>社群平台、網路瀏覽紀錄、照片 EXIF 資訊</p><p class="ko">정보 수집 — SNS·인터넷 기록·사진 EXIF</p></div>
+      <div class="card method" data-go="9"><div class="top"><span class="num">04</span><span class="grp">科技分析 <span class="ko">기술 분석</span></span></div><h4>訊號視域分析</h4><p>手機握手紀錄 → 視域分析 → 熱區限縮</p><p class="ko">기지국 접속 기록 → 가시권 분석 → 핫존 축소</p><div class="go">→ P.09</div></div>
+      <div class="card method" data-go="9"><div class="top"><span class="num">05</span><span class="grp">科技分析 <span class="ko">기술 분석</span></span></div><h4>截圖套疊定位</h4><p>迷途者手機截圖 → Google Earth 套圖</p><p class="ko">조난자 화면 캡처 → Google Earth 중첩 위치 확인</p><div class="go">→ P.09</div></div>
+      <div class="card method" data-go="10"><div class="top"><span class="num">06</span><span class="grp">現地對照 <span class="ko">현장 대조</span></span></div><h4>照片現地對照</h4><p>迷途者的照片／影片 ↔ 地圖，限縮熱區</p><p class="ko">조난자 사진·영상 ↔ 지도 대조로 핫존 축소</p><div class="go">→ P.10</div></div>
+    </div>
+  </div>
+  <aside class="notes" data-sec="40"><p>台灣最困難的是「難找」。所以我們發展出六種搜索手法：主動定位，包括引導式手機定位和遺失手機定位；被動的情資收集；科技分析，包括訊號視域分析和截圖套疊；以及照片現地對照。目標是把搜索範圍從整座山縮小到幾個熱區。</p><p class="ko">대만에서 가장 어려운 것은 '찾기'입니다. 그래서 저희는 여섯 가지 수색 기법을 발전시켰습니다. 능동 위치 확인으로 유도식 휴대폰 위치 확인과 분실 휴대폰 찾기, 수동적인 정보 수집, 기술 분석으로 통신 신호 가시권 분석과 화면 캡처 중첩, 그리고 사진 현장 대조입니다. 목표는 수색 범위를 산 전체에서 몇 개의 핫존으로 좁히는 것입니다.</p></aside>
+</section>
+
+<!-- ================= P8 手機定位 ================= -->
+<section data-page="8" data-section="維持注意" data-background-image="images/bg-topo.jpg" data-background-opacity="0.14" data-background-size="cover">
+  <div class="inner">
+    <div class="head"><div class="kicker">07 · Guided Phone Positioning</div><h2>引導式手機定位</h2><p class="ko">유도식 휴대폰 위치 확인 — 조난자가 직접 좌표를 보내도록 안내</p></div>
+    <div class="phones">
+      <div class="phone"><div class="scr zoomable"><img src="images/p8-google-find.jpg" alt=""></div><div class="cap">尋找我的裝置<span class="ko">Google '내 기기 찾기'</span></div></div>
+      <div class="phone"><div class="scr zoomable"><img src="images/p8-iphone-compass.jpg" alt=""></div><div class="cap">iPhone 指南針座標<span class="ko">iPhone 나침반 좌표</span></div></div>
+      <div class="phone"><div class="scr zoomable"><img src="images/p8-google-maps.jpg" alt=""></div><div class="cap">Google Maps 圖釘<span class="ko">Google 지도 핀</span></div></div>
+      <div class="phone"><div class="scr zoomable"><img src="images/p8-compass-app.jpg" alt=""></div><div class="cap">台灣大地羅盤 App<span class="ko">대만 나침반 앱 좌표</span></div></div>
+      <div class="phone"><div class="scr zoomable"><img src="images/p8-findme.jpg" alt=""></div><div class="cap">FindMe 網頁定位<span class="ko">웹 위치 전송</span></div></div>
+    </div>
+    <div class="flow">
+      <div class="st" data-n="1">聯繫報案者<span class="ko">신고자 연락</span></div>
+      <div class="st" data-n="2">引導開啟定位工具<span class="ko">위치 도구 실행 안내</span></div>
+      <div class="st" data-n="3">簡訊／LINE 回傳座標<span class="ko">문자·LINE으로 좌표 회신</span></div>
+      <div class="st" data-n="4">策略派遣搜救<span class="ko">전략적 수색대 출동</span></div>
+    </div>
+  </div>
+  <aside class="notes" data-sec="35"><p>首先是主動定位中的引導式手機定位。我們透過電話引導迷途者，用他手機上已有的工具取得座標：Google 尋找我的裝置、iPhone 指南針、Google Maps 圖釘、羅盤 App，或是網頁定位服務，再用簡訊或 LINE 回傳。拿到座標，就能做策略派遣。（點圖可放大）</p><p class="ko">먼저 능동 위치 확인 중 유도식 휴대폰 위치 확인입니다. 전화로 조난자를 안내해 휴대폰에 이미 있는 도구로 좌표를 얻습니다. Google '내 기기 찾기', iPhone 나침반, Google 지도 핀, 나침반 앱, 또는 웹 위치 전송 서비스를 이용해 문자나 LINE으로 좌표를 받습니다. 좌표를 확보하면 전략적으로 출동할 수 있습니다. (이미지를 클릭하면 확대)</p></aside>
+</section>
+
+<!-- ================= P9 視域分析 ================= -->
+<section id="slide-viewshed" data-page="9" data-section="維持注意" data-background-image="images/bg-topo.jpg" data-background-opacity="0.14" data-background-size="cover">
+  <div class="inner">
+    <div class="head"><div class="kicker">08 · Signal Viewshed Analysis</div><h2>訊號視域分析</h2><p class="ko">통신 신호 가시권(Viewshed) 분석으로 수색 범위 축소</p></div>
+    <div class="p9-grid">
+      <div class="card vs-box">
+        <div class="steps"><button class="btn on" data-s="1">① 握手紀錄 <span class="ko">기지국 접속 기록</span></button><button class="btn" data-s="2">② 計算視域 <span class="ko">가시권 계산</span></button><button class="btn" data-s="3">③ 交集熱區 <span class="ko">교집합 → 핫존</span></button></div>
+        <svg id="vsSvg" viewBox="0 0 800 330"></svg>
+        <p class="vs-cap" id="vsCap"></p>
+      </div>
+      <div class="p9-side">
+        <div class="frame p9-photo zoomable"><img src="images/p9-google-earth.jpg" alt="Google Earth 熱區規劃"><span class="tag">CASE · GOOGLE EARTH</span></div>
+        <p class="body">手機只要與基地台「握手」，就代表它位在<b class="hl2">看得見該基地台</b>的坡面上。把視域與可能路線疊合，就能在地圖上圈出搜索熱區。<span class="ko" style="display:block;font-size:15px;margin-top:6px">휴대폰이 기지국에 접속했다면 그 기지국이 '보이는' 사면에 있었다는 뜻입니다. 가시권과 예상 경로를 겹치면 지도에서 수색 핫존을 좁힐 수 있습니다.</span></p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes" data-sec="40"><p>接著是科技分析。即使迷途者沒有回傳座標，手機只要曾和基地台握手，電信紀錄就會留下。我們在 GIS 上對這座基地台做視域分析，算出哪些坡面看得到它，再和可能的行進路線交集，就能把範圍縮小到幾個熱區。右邊是 Google Earth 的實際案例規劃。</p><p class="ko">다음은 기술 분석입니다. 조난자가 좌표를 보내지 못하더라도 휴대폰이 기지국에 접속한 적이 있다면 통신 기록이 남습니다. GIS에서 해당 기지국의 가시권 분석을 수행해 기지국이 보이는 사면을 계산하고, 이를 예상 이동 경로와 겹치면 범위를 몇 개의 핫존으로 좁힐 수 있습니다. 오른쪽은 Google Earth로 계획한 실제 사례입니다.</p></aside>
+</section>
+
+<!-- ================= P10 照片現地對照 ================= -->
+<section data-page="10" data-section="維持注意" data-background-image="images/bg-topo.jpg" data-background-opacity="0.14" data-background-size="cover">
+  <div class="inner">
+    <div class="head"><div class="kicker">09 · Photo–Terrain Matching</div><h2>照片現地對照</h2><p class="ko">조난자 사진과 현장·지도 대조로 위치 추정</p></div>
+    <div class="p10-grid">
+      <div class="frame p10-topo zoomable"><img src="images/p10-topo.jpg" alt="地形圖" style="object-position:43% 34%"><span class="tag">TOPO MAP · 熱區 핫존</span></div>
+      <div>
+        <div class="tabs">
+          <div class="card tab on" data-p="0"><span class="i">1</span><div><h4>照片與現地對照，判讀地形地貌</h4><p class="ko">사진 또는 현장 비교를 통해 지형·지세 판독</p></div></div>
+          <div class="card tab" data-p="1"><span class="i">2</span><div><h4>谷線、溪流走向與遠近判斷位置</h4><p class="ko">계곡선 및 하천 흐름 방향과 원근감을 이용한 위치 판단</p></div></div>
+          <div class="card tab" data-p="2"><span class="i">3</span><div><h4>稜線形狀與天空開闊程度判斷位置</h4><p class="ko">능선 형태와 하늘 개방 정도를 활용한 위치 판단</p></div></div>
+        </div>
+        <div class="frame p10-photo zoomable"><img id="p10img" src="images/p10-photo1.jpg" alt="現地照片"><span class="tag" id="p10tag">PHOTO 1</span></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes" data-sec="40"><p>再來是照片現地對照。迷途者常會上傳照片或影片，我們從照片裡判讀地形地貌、溪流走向和遠近、稜線形狀和天空開闊程度，再回到地形圖上比對，找出最可能的位置，限縮熱區，就像地圖上紅圈標示的位置。（點 1、2、3 切換照片）</p><p class="ko">다음은 사진 현장 대조입니다. 조난자는 사진이나 영상을 올리는 경우가 많습니다. 사진에서 지형·지세, 하천의 흐름 방향과 원근, 능선의 형태와 하늘이 트인 정도를 판독한 뒤 지형도와 대조해 가장 가능성 높은 위치를 찾아 핫존을 좁힙니다. 지도의 빨간 원이 바로 그 위치입니다. (1·2·3을 눌러 사진 전환)</p></aside>
+</section>
+
+<!-- ================= P11 PAS ================= -->
+<section data-page="11" data-section="維持注意" data-background-image="images/bg-medical.jpg" data-background-opacity="0.18" data-background-size="cover">
+  <div class="inner">
+    <div class="head"><div class="kicker">10 · Wilderness First Aid · PAS</div><h2>野外救護評估系統</h2><p class="ko">야외 응급처치 평가 시스템(PAS)</p></div>
+    <div class="p11-grid">
+      <div class="frame p11-photo"><img src="images/p11-wfa.jpg" alt="野外緊急救護"><span class="tag">PATIENT ASSESSMENT</span></div>
+      <div class="pas">
+        <div class="card lvl on"><div class="badge">1</div><div><h4>現場評估<small>SCENE</small></h4><p class="sum">人數、機轉、風險<span class="ko">현장 평가 — 인원·손상 기전·위험</span></p>
+          <div class="more"><ul><li>風險：個人、夥伴、公眾、傷患<span class="ko"> · 위험: 본인·동료·일반인·환자</span></li><li>受傷機轉（MOI）：創傷、內科、環境因素<span class="ko"> · 손상 기전(MOI): 외상·내과·환경 요인</span></li><li>數量：傷患、救難人員、資源<span class="ko"> · 인원: 환자·구조대원·자원</span></li></ul></div></div></div>
+        <div class="card lvl"><div class="badge">2</div><div><h4>初級評估<small>PRIMARY</small></h4><p class="sum">穩定傷患：循環／呼吸／中樞神經<span class="ko">1차 평가 — 환자 안정화 (순환·호흡·중추신경)</span></p>
+          <div class="more"><ul><li>城市外傷 <b>XABCDE</b> 或 戰術外傷 <b>MARCH</b><span class="ko"> · 일반 외상 XABCDE 또는 전술 외상 MARCH</span></li><li>大出血控制、呼吸道、呼吸、清醒程度（AVPU）<span class="ko"> · 대량 출혈 지혈·기도·호흡·의식 수준(AVPU)</span></li></ul></div></div></div>
+        <div class="card lvl"><div class="badge">3</div><div><h4>次級評估<small>SECONDARY</small></h4><p class="sum">完成治療並準備交接<span class="ko">2차 평가 — 처치 완료 및 인계 준비</span></p>
+          <div class="more"><ul><li>重點式理學檢查、生命徵象量測<span class="ko"> · 집중 신체 검진·활력징후 측정</span></li><li><b>SOAP</b> 記錄、<b>SAMPLE</b> 病史<span class="ko"> · SOAP 기록·SAMPLE 병력 청취</span></li></ul></div></div></div>
+        <div class="pas-end">最後：在持續照護下脫困 → 交接<span class="ko">마지막: 지속적인 처치를 유지하며 구출 → 인계</span></div>
+        <p class="note">＊亦認同其他評估系統。點選各層級展開細項。<span class="ko"> · 다른 평가 체계도 인정합니다.</span></p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes" data-sec="45"><p>找到人之後，就是救護。台灣野外緊急救護我們使用 PAS 野外救護評估系統，分三層：現場評估，確認人數、受傷機轉和風險；初級評估，穩定循環、呼吸、中樞，依情況用城市外傷 XABCDE 或戰術外傷 MARCH；次級評估，做重點理學檢查、生命徵象，並用 SOAP、SAMPLE 記錄，準備交接。最後，是在持續照護下讓傷患脫困。</p><p class="ko">사람을 찾은 뒤에는 응급처치입니다. 대만의 야외 응급처치에서 저희는 PAS 야외 응급처치 평가 시스템을 사용하며, 세 단계로 나뉩니다. 현장 평가에서는 인원, 손상 기전, 위험을 확인합니다. 1차 평가에서는 순환·호흡·중추신경을 안정시키며, 상황에 따라 일반 외상 XABCDE 또는 전술 외상 MARCH를 적용합니다. 2차 평가에서는 집중 신체 검진과 활력징후 측정을 하고, SOAP·SAMPLE로 기록해 인계를 준비합니다. 마지막으로 지속적인 처치를 유지하면서 환자를 구출합니다.</p></aside>
+</section>
+
+<!-- ================= P12 個人 1.2kg ================= -->
+<section data-page="12" data-section="喚起行動" data-background-image="images/bg-rope.jpg" data-background-opacity="0.14" data-background-size="cover">
+  <div class="inner lw-grid">
+    <div class="frame lw-photo"><img src="images/p12-personal.jpg" alt="個人輕量化繩索裝備"><span class="tag">PERSONAL KIT</span></div>
+    <div class="lw-side">
+      <div class="kicker">11 · Lightweight · Personal</div>
+      <div class="kg" data-count="1.2" data-dec="1">0<small>kg</small></div>
+      <h3>個人裝備即可完成<br>高效率繩索上升與下降</h3>
+      <p class="ko">개인 장비 1.2kg으로 고효율 로프 등강·하강 완성</p>
+      <div class="moves"><span>上升 <span class="ko">등강</span></span><span>下降 <span class="ko">하강</span></span><span>轉換 <span class="ko">전환(체인지오버)</span></span></div>
+      <div class="card lw-why">因為「難找」，隊員要背著登山裝備與搜救器材長距離穿越、搜索 —— <b class="hl">每一公克都會影響抵達時間</b>。<span class="ko" style="display:block;font-size:15px;margin-top:6px">'찾기 어려움' 때문에 대원들은 등산 장비와 수색구조 장비를 메고 장거리를 이동하며 수색합니다 — 1g의 무게도 도착 시간에 영향을 줍니다.</span></div>
+    </div>
+  </div>
+  <aside class="notes" data-sec="35"><p>回到「難找」：在台灣，搜救隊員必須背著登山裝備和搜救器材，在山林間長距離穿越和搜索，所以技術裝備的輕量化非常重要。我們個人的輕量化配置，只用 1.2 公斤的器材，就能完成高效率的繩索上升、下降與轉換。</p><p class="ko">다시 '찾기 어려움'으로 돌아가 보겠습니다. 대만에서 수색구조 대원은 등산 장비와 수색구조 장비를 메고 산림 속을 장거리 이동하며 수색해야 합니다. 그래서 기술 장비의 경량화가 매우 중요합니다. 저희의 개인 경량화 구성은 1.2kg의 장비만으로 고효율 로프 등강·하강과 전환(체인지오버)을 해낼 수 있습니다.</p></aside>
+</section>
+
+<!-- ================= P13 團隊 2.4kg ================= -->
+<section data-page="13" data-section="喚起行動" data-background-image="images/bg-rope.jpg" data-background-opacity="0.14" data-background-size="cover">
+  <div class="inner lw-grid">
+    <div class="frame lw-photo"><img src="images/p13-team.jpg" alt="團隊繩索救援"><span class="tag">TEAM ROPE RESCUE</span></div>
+    <div class="lw-side">
+      <div class="kicker">12 · Lightweight · Team of 5</div>
+      <div class="kg" data-count="2.4" data-dec="1">0<small>kg / 人</small></div>
+      <h3>5 人團隊即可完成<br>高效率繩索救援</h3>
+      <p class="ko">5인 팀, 1인당 기술 장비 2.4kg으로 고효율 로프 구조 완성</p>
+      <div class="team">
+        <div class="card mbr" style="transition-delay:.1s"><svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="3"/><path d="M6 21v-4a6 6 0 0 1 12 0v4"/></svg><b>2.4</b></div>
+        <div class="card mbr" style="transition-delay:.25s"><svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="3"/><path d="M6 21v-4a6 6 0 0 1 12 0v4"/></svg><b>2.4</b></div>
+        <div class="card mbr" style="transition-delay:.4s"><svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="3"/><path d="M6 21v-4a6 6 0 0 1 12 0v4"/></svg><b>2.4</b></div>
+        <div class="card mbr" style="transition-delay:.55s"><svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="3"/><path d="M6 21v-4a6 6 0 0 1 12 0v4"/></svg><b>2.4</b></div>
+        <div class="card mbr" style="transition-delay:.7s"><svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="3"/><path d="M6 21v-4a6 6 0 0 1 12 0v4"/></svg><b>2.4</b></div>
+      </div>
+      <p class="sum-line">團體裝備僅需要攜帶符合隊伍戰術使用的<b class="hl">繩索</b>以及<b class="hl">捲式擔架</b><span class="ko" style="display:block;font-size:15px;margin-top:4px">팀 공용 장비는 팀 전술에 맞는 로프와 SKED 들것만 준비하면 됩니다</span></p>
+    </div>
+  </div>
+  <aside class="notes" data-sec="30"><p>如果要做到團隊繩索救援，五個人的團隊，每人只需要背負 2.4 公斤的技術裝備，就能完成高效率的架設、上拉、下放團隊救援；團體裝備只需要攜帶符合隊伍戰術使用的繩索，以及捲式擔架。</p><p class="ko">팀 로프 구조의 경우, 5인 팀에서 1인당 2.4kg의 기술 장비만 메면 고효율의 설치·인양·하강 팀 구조를 완성할 수 있습니다. 팀 공용 장비는 팀 전술에 맞는 로프와 SKED 들것만 준비하면 됩니다.</p></aside>
+</section>
+
+<!-- ================= P14 搜救A 器材表（資料來源：裝備分析.xlsx「個裝輕量化v123」搜救A/溯溪欄） ================= -->
+<section data-page="14" data-section="喚起行動" data-background-image="images/bg-rope.jpg" data-background-opacity="0.07" data-background-size="cover">
+  <div class="inner">
+    <div class="head"><div class="kicker">13 · Lightweight Gear Set · 搜救員</div><h2>輕量化器材組合</h2><p class="ko">경량화 장비 구성 — 수색구조대원 개인 장비</p></div>
+    <div class="p14-grid">
+      <div>
+        <div class="frame p14-photo zoomable"><img src="images/p14-gear.jpg" alt="輕量化器材圖"><span class="tag">CLICK TO ZOOM</span></div>
+        <div class="card p14-total">
+          <div class="t">2,436<small>g</small><span style="font:500 15px 'Noto Sans TC';color:var(--ink-2);margin-left:10px">共 20 項</span></div>
+          <div class="comp" id="comp"></div>
+          <p>含岩盔、吊帶；未計入公裝主繩。<span class="ko" style="font-size:13.5px">헬멧·하네스 포함, 팀 공용 주 로프 제외</span></p>
+        </div>
+      </div>
+      <div class="groups" id="gearGroups"></div>
+    </div>
+  </div>
+  <aside class="notes" data-sec="30"><p>這是我們「搜救員」的個人輕量化器材清單，一共 20 項，分成防護、上升下降、滑輪、鉤環連結和繩材五類。很多器材都選擇一物多用的款式，例如 Rollnlock 可以當上升器、制動滑輪或單滑輪。（點左邊照片可以放大）</p><p class="ko">이것은 저희 '수색구조 대원'의 개인 경량화 장비 목록으로, 총 20가지이며 보호 장비, 등강·하강, 도르래, 카라비너·연결, 로프·코드의 다섯 가지로 나뉩니다. 많은 장비가 다용도 제품으로, 예를 들어 Rollnlock은 등강기, 제동 도르래, 단일 도르래로 모두 사용할 수 있습니다. (왼쪽 사진을 클릭하면 확대)</p></aside>
+</section>
+
+<!-- ================= P15 原則 ================= -->
+<section data-page="15" data-section="喚起行動" data-background-image="images/bg-rope.jpg" data-background-opacity="0.16" data-background-size="cover">
+  <div class="inner">
+    <div class="head" style="margin-bottom:22px"><div class="kicker">14 · Principles</div><h2>輕量化的原則</h2><p class="ko">경량화 원칙과 개인 경량화의 핵심 개념</p></div>
+    <div class="row-label"><h3 class="hl">輕量化原則</h3><span class="ko">경량화 원칙</span></div>
+    <div class="prin">
+      <div class="card"><div class="n">1</div><div><h4>不帶不必要的裝備</h4><p class="ko">불필요한 장비는 가져가지 않는다</p></div></div>
+      <div class="card"><div class="n">2</div><div><h4>一物多用</h4><p class="ko">하나의 장비, 여러 용도</p></div></div>
+      <div class="card"><div class="n">3</div><div><h4>同功能項目，選擇輕的</h4><p class="ko">같은 기능이면 더 가벼운 것</p></div></div>
+    </div>
+    <div class="row-label"><h3 class="hl2">個人輕量化核心概念</h3><span class="ko">개인 경량화 핵심 개념</span></div>
+    <div class="prin core">
+      <div class="card"><div class="n">1</div><div><h4>個人上升下降 ＝ 拖拉系統上拉下放<small>教育：學新復舊</small></h4><p class="ko">개인 등강·하강 = 홀링 시스템 인양·하강 (교육: 새 기술을 배우며 기존 기술 복습)</p></div></div>
+      <div class="card"><div class="n">2</div><div><h4>一套模組化輕量裝備<small>既是個人裝備，也是公裝</small></h4><p class="ko">모듈형 장비 하나로 개인·팀 장비 겸용</p></div></div>
+      <div class="card"><div class="n">3</div><div><h4>相同配置、語言及默契<small>右：個人　左：救援</small></h4><p class="ko">동일한 장비 배치·용어·팀워크 (오른쪽: 개인, 왼쪽: 구조)</p></div></div>
+    </div>
+  </div>
+  <aside class="notes" data-sec="40"><p>最後是輕量化的原則：不帶不必要的裝備、一物多用、同功能選輕的。個人輕量化的核心概念有三點：個人上升下降的技術，就等於拖拉系統的上拉下放，學新的同時複習舊的；一套模組化裝備，既是個人裝備也是公裝；全隊使用相同配置、語言和默契，右邊是個人、左邊是救援。謝謝大家，最後請大家看一段影片。</p><p class="ko">마지막으로 경량화의 원칙입니다. 불필요한 장비는 가져가지 않고, 하나의 장비를 여러 용도로 쓰며, 같은 기능이면 더 가벼운 것을 선택합니다. 개인 경량화의 핵심 개념은 세 가지입니다. 첫째, 개인 등강·하강 기술은 곧 홀링 시스템의 인양·하강과 같아서, 새 기술을 배우면서 기존 기술을 복습하게 됩니다. 둘째, 모듈형 장비 한 세트가 개인 장비이자 팀 공용 장비가 됩니다. 셋째, 팀 전체가 같은 장비 배치·용어·팀워크를 사용하며, 오른쪽은 개인용, 왼쪽은 구조용입니다. 감사합니다. 마지막으로 영상을 보시겠습니다.</p></aside>
+</section>
+
+<!-- ================= 影片 3 ================= -->
+<section data-page="V3" data-section="喚起行動" data-background-color="#0d1117">
+  <div class="inner">
+    <div class="head"><div class="kicker">Video 3 · 影片</div><h3>MoRE 山域搜救 <span class="ko" style="font-size:18px">· MoRE 산악 수색구조</span></h3></div>
+    <div class="video-wrap" data-yt="V3">
+      <div class="video-ph"><div class="play">▶</div><div>尚未設定 YouTube 連結</div><code>YOUTUBE.V3</code><div class="note">在 index.html 開頭的 YOUTUBE 設定區貼上連結</div></div></div>
+  </div>
+  <aside class="notes" data-sec="0"><p>（結尾影片，不計入 10 分鐘。）</p><p class="ko">(마무리 영상. 10분 발표 시간에 포함되지 않습니다.)</p></aside>
+</section>
+
+<!-- ================= 結尾 ================= -->
+<section data-page="END" data-section="喚起行動" data-background-image="images/cover.jpg" data-background-opacity="0.45" data-background-size="cover">
+  <div class="inner end">
+    <div class="kicker" style="text-align:center">Thank you · Q&amp;A</div>
+    <div class="thx">감사합니다</div>
+    <div class="thx2">謝謝聆聽 · 歡迎從左側提問牆提問</div><p class="ko" style="font-size:18px;margin-top:6px">경청해 주셔서 감사합니다 · 질문은 왼쪽 질문 게시판에 남겨 주세요</p>
+    <img src="images/more-logo-white.png" alt="MoRE">
+  </div>
+  <aside class="notes" data-sec="0"><p>감사합니다！謝謝大家。接下來開放提問，可以從左側提問牆看讚數最高的問題開始回答。</p><p class="ko">감사합니다. 이제 질문을 받겠습니다. 왼쪽 질문 게시판에서 공감을 가장 많이 받은 질문부터 답변하겠습니다.</p></aside>
+</section>
+
+</div>
+</div>
+
+<!-- 全域提問牆側邊欄（.reveal 之外，每頁可拉開） -->
+<div id="qa-overlay"></div>
+<aside id="qa-sidebar" data-prevent-swipe>
+  <button id="qa-handle" aria-label="開關提問牆">
+    <span style="font-size:18px;">🙋</span>
+    <span style="writing-mode:vertical-rl;letter-spacing:3px;font-weight:700;font-size:15px;">提問 질문</span>
+    <span class="qh-dot"></span>
+  </button>
+  <div class="qa-inner">
+    <div style="font-size:19px;font-weight:700;color:var(--accent2);margin-bottom:4px;">匿名提問牆 <span class="live-badge">LIVE</span></div>
+    <div class="ko" style="font-size:15px;margin-bottom:14px;">익명 질문 게시판 — 한국어로 질문해도 됩니다</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+      <input id="qa-input" class="ui-input" type="text" placeholder="輸入問題 / 질문을 입력하세요…" maxlength="120" />
+      <button id="qa-btn" class="ui-btn">送出提問 · 보내기</button>
+    </div>
+    <div id="qa-list" style="flex:1;overflow-y:auto;padding-right:4px;"></div>
+  </div>
+</aside>
+
+<div id="notes"><div class="meta"><span id="nMeta"></span><span class="tm" id="nTimer">00:00 / 10:00</span></div><div class="txt" id="nTxt"></div></div>
+<div id="lightbox"><img alt=""></div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+/* ============ 影片：在這裡貼上 YouTube 連結（留空會顯示提示框） ============
+   支援 https://youtu.be/xxxx、https://www.youtube.com/watch?v=xxxx、含 ?t=30 起始秒數 */
+const YOUTUBE = {
+  V1: '',  // P.02 之後：台灣山林之美
+  V2: '',  // P.04 之後：山域事故救援實況
+  V3: ''   // P.15 之後：結尾影片（不計入 10 分鐘）
+};
+
+/* ============ 公開網址（GitHub Pages）與 QR code ============ */
+const PUBLIC_URL = 'https://phu00572.github.io/more-korea-seminar/';
+const joinUrl = (/github\.io$/.test(location.hostname) ? location.origin + location.pathname : PUBLIC_URL) + '#/poll';
+function makeQR(id, size) {
+  const el = document.getElementById(id); if (!el || typeof QRCode === 'undefined') return;
+  el.innerHTML = ''; new QRCode(el, { text: joinUrl, width: size, height: size, colorDark: '#0d1117', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
+}
+makeQR('qr-cover', 92); makeQR('qr-poll', 200);
+document.getElementById('qr-url').textContent = joinUrl.replace('https://', '');
+
+/* ============ Reveal 初始化（響應式） ============ */
+let timerStart = 0;
+const $ = s => document.querySelector(s);
+function toggleNotes() { $('#notes').classList.toggle('show'); if (!timerStart) timerStart = Date.now(); }
+function toggleKo() { document.body.classList.toggle('no-ko'); }
+/* ---------- YouTube 播放控制（IFrame API postMessage，免載入額外腳本） ---------- */
+function ytParse(url) {
+  if (!url) return null;
+  const m = url.match(/(?:youtu\.be\/|v=|embed\/|shorts\/|live\/)([\w-]{11})/) || url.match(/^([\w-]{11})$/);
+  if (!m) return null;
+  const t = url.match(/[?&](?:t|start)=(\d+)/);
+  return { id: m[1], start: t ? +t[1] : 0 };
+}
+function ytCmd(frame, func) { frame && frame.contentWindow && frame.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args: [] }), '*'); }
+function ytLoad(wrap) {
+  if (wrap.querySelector('iframe')) return;
+  const v = ytParse(YOUTUBE[wrap.dataset.yt]); if (!v) return;
+  const f = document.createElement('iframe');
+  f.src = `https://www.youtube.com/embed/${v.id}?enablejsapi=1&rel=0&playsinline=1&modestbranding=1${v.start ? '&start=' + v.start : ''}&origin=${encodeURIComponent(location.origin)}`;
+  f.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture';
+  f.allowFullscreen = true; f.title = 'YouTube video';
+  f.addEventListener('load', () => f.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: wrap.dataset.yt }), '*'));
+  wrap.appendChild(f); wrap.classList.add('ready');
+}
+window.addEventListener('message', e => {
+  if (!/youtube\.com$/.test(new URL(e.origin).hostname)) return;
+  let d; try { d = JSON.parse(e.data); } catch (_) { return; }
+  const f = [...document.querySelectorAll('.video-wrap iframe')].find(x => x.contentWindow === e.source);
+  if (f && d.info && d.info.playerState !== undefined) f.dataset.state = d.info.playerState;
+});
+function spaceKey() {
+  const f = Reveal.getCurrentSlide()?.querySelector('.video-wrap iframe');
+  if (f) ytCmd(f, f.dataset.state === '1' ? 'pauseVideo' : 'playVideo'); else Reveal.next();
+}
+
+function deckSize() {
+  const portrait = window.matchMedia('(orientation: portrait)').matches;
+  const w = window.innerWidth, h = window.innerHeight;
+  if (portrait && w < 760) {
+    const vh = Math.max(860, Math.round(460 * h / Math.max(1, w)));
+    return { width: 460, height: vh, margin: 0.01, mobile: true, center: false, touch: false };
+  }
+  return { width: 1280, height: 760, margin: 0.04, mobile: false, center: true, touch: true };
+}
+function applyResponsive() {
+  const n = deckSize();
+  document.body.classList.toggle('mobile', n.mobile);
+  Reveal.configure({ width: n.width, height: n.height, margin: n.margin, center: n.center, touch: n.touch, view: null });
+  Reveal.layout();
+  setTimeout(() => { const id = Reveal.getCurrentSlide()?.id; if (id === 'slide-trend' || id === 'slide-cause') window.redrawCharts && window.redrawCharts(); }, 250);
+}
+const ds = deckSize();
+document.body.classList.toggle('mobile', ds.mobile);
+Reveal.initialize({
+  hash: true, transition: 'fade', backgroundTransition: 'fade',
+  center: ds.center, touch: ds.touch, progress: true, controls: true, slideNumber: false,
+  width: ds.width, height: ds.height, margin: ds.margin, minScale: 0.2, maxScale: 1.6,
+  view: null, scrollActivationWidth: null,
+  keyboard: { 78: toggleNotes, 75: toggleKo, 84: () => { timerStart = Date.now(); }, 32: spaceKey },
+  plugins: [RevealNotes]
+});
+Reveal.on('ready', e => { applyResponsive(); onEnter(e.currentSlide); });
+window.addEventListener('load', applyResponsive);
+let _rzT; window.addEventListener('resize', () => { clearTimeout(_rzT); _rzT = setTimeout(applyResponsive, 180); });
+window.addEventListener('orientationchange', () => setTimeout(applyResponsive, 250));
+Reveal.on('slidechanged', e => {
+  if (e.currentSlide) e.currentSlide.scrollTop = 0;
+  if (e.previousSlide) e.previousSlide.querySelectorAll('.video-wrap iframe').forEach(f => ytCmd(f, 'pauseVideo'));
+  onEnter(e.currentSlide);
+});
+
+/* ============ 切頁時：章節標籤、頁碼、講稿、動畫、lazy init ============ */
+const contentTotal = [...document.querySelectorAll('.reveal .slides > section')].filter(s => /^\d+$/.test(s.dataset.page)).length;
+const inited = {};
+function onEnter(s) {
+  if (!s) return;
+  $('#section-tag').textContent = '— ' + (s.dataset.section || '') + ' —';
+  const pg = s.dataset.page || '';
+  $('#pageInfo').textContent = /^\d+$/.test(pg) ? `P.${pg.padStart(2, '0')} / ${contentTotal}` : pg === 'Q' ? 'LIVE POLL' : pg.startsWith('V') ? '▶ VIDEO' : 'END';
+  const n = s.querySelector('aside.notes'), sec = n ? +n.dataset.sec : 0;
+  $('#nMeta').textContent = (/^\d+$/.test(pg) ? 'P.' + pg.padStart(2, '0') : pg) + (sec ? ` · 建議 ${sec} 秒` : '');
+  $('#nTxt').innerHTML = n ? n.innerHTML : '';
+  s.querySelectorAll('[data-count]').forEach(countUp);
+  s.querySelectorAll('.video-wrap[data-yt]').forEach(ytLoad);
+  const id = s.id;
+  if (id === 'slide-trend' && !inited.trend && window.Chart) { inited.trend = true; setTimeout(initTrend, 150); }
+  if (id === 'slide-cause') { if (!inited.cause && window.Chart) { inited.cause = true; setTimeout(initCause, 150); } animateRank(); }
+  if (id === 'slide-viewshed' && !inited.vs) { inited.vs = true; initViewshed(); }
+}
+function countUp(el) {
+  const to = parseFloat(el.dataset.count), dec = +(el.dataset.dec || 0);
+  const small = el.querySelector('small').outerHTML, t0 = performance.now(), dur = 1400;
+  (function tick(t) {
+    const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+    el.innerHTML = (to * e).toFixed(dec) + small;
+    if (p < 1) requestAnimationFrame(tick);
+  })(t0);
+}
+setInterval(() => {
+  if (!timerStart) return;
+  const d = Math.floor((Date.now() - timerStart) / 1000), el = $('#nTimer');
+  el.textContent = `${String(Math.floor(d / 60)).padStart(2, '0')}:${String(d % 60).padStart(2, '0')} / 10:00`;
+  el.classList.toggle('over', d > 600);
+}, 500);
+
+/* ============ 燈箱 ============ */
+const lb = $('#lightbox');
+document.querySelectorAll('.zoomable').forEach(z => z.addEventListener('click', () => { lb.querySelector('img').src = z.querySelector('img').src; lb.classList.add('show'); }));
+lb.addEventListener('click', () => lb.classList.remove('show'));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('show'); });
+
+/* ============ 頁面互動（不需 Firebase） ============ */
+document.querySelectorAll('.diff').forEach(d => d.addEventListener('click', () => d.classList.toggle('open')));
+document.querySelectorAll('.chips .btn').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.chips .btn').forEach(x => x.classList.toggle('on', x === b));
+  const f = b.dataset.f;
+  document.querySelectorAll('.skill').forEach(s => { const hit = f === 'all' || s.dataset.t.split(' ').includes(f); s.classList.toggle('dim', !hit); s.classList.toggle('lit', hit && f !== 'all'); });
+}));
+document.querySelectorAll('.method[data-go]').forEach(m => m.addEventListener('click', () => {
+  const i = [...document.querySelectorAll('.reveal .slides > section')].findIndex(s => s.dataset.page === m.dataset.go); if (i >= 0) Reveal.slide(i);
+}));
+const p10imgs = ['images/p10-photo1.jpg', 'images/p10-photo2.jpg', 'images/p10-photo3.jpg'];
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === t));
+  const img = $('#p10img'); img.style.opacity = 0;
+  setTimeout(() => { img.src = p10imgs[+t.dataset.p]; img.style.opacity = 1; $('#p10tag').textContent = 'PHOTO ' + (+t.dataset.p + 1); }, 200);
+}));
+document.querySelectorAll('.lvl').forEach(l => l.addEventListener('click', () => document.querySelectorAll('.lvl').forEach(x => x.classList.toggle('on', x === l))));
+
+/* ============ P14 搜救A 器材（裝備分析.xlsx「個裝輕量化v123」搜救A/溯溪 欄） ============ */
+const GEAR = [
+  { g: '防護裝備', ko: '보호 장비', c: '#ff7a2f', items: [
+    ['SIROCCO 超輕量岩盔', 'PETZL', 170], ['SITTA 極輕吊帶', 'PETZL', 285], ['手套', '3M MS100', 20], ['摺疊割繩刀', 'PETZL', 43]] },
+  { g: '上升・下降', ko: '등강·하강', c: 'rgba(255,122,47,.55)', items: [
+    ['TURBOCHEST 胸式上升器', 'CAMP', 110], ['Rollnlock', 'Climbing Technology', 80], ['OKA 下降器', 'KONG', 95], ['MIKU V2 確保器', 'FLXE', 82], ['PAS 自我確保繩（動力繩）', 'metolius', 120]] },
+  { g: '滑輪系統', ko: '도르래', c: '#4cc9f0', items: [
+    ['Micro Traxion 單向滑輪', 'PETZL', 85], ['Tethys Pro 側板滾珠滑輪', 'CAMP', 90], ['ROLLCLIP Z 滑輪鉤環', 'PETZL', 105]] },
+  { g: '鉤環・連結', ko: '카라비너·연결', c: 'rgba(76,201,240,.55)', items: [
+    ['O 型鉤環 ×8', 'PETZL', 560], ['ATTACHE 鉤環 ×5', 'PETZL', 290], ['HALF 輕量化撤退環（取代分力盤）', 'TEBYLON', 23]] },
+  { g: '繩材', ko: '로프·코드', c: '#7d8ba3', items: [
+    ['Sling ×2', 'Beal', 70], ['耐熱繩', 'Ropesmith', 50], ['耐熱繩', 'xmonster', 45], ['Tech Cord 高強度輔助繩 2.5 m（取代腳繩）', 'New England Ropes', 28], ['Tech Cord 高強度輔助繩 7.5 m（取代扁帶）', 'New England Ropes', 85]] }
+];
+(function buildGear() {
+  const total = 2436, box = $('#gearGroups'), comp = $('#comp');
+  GEAR.forEach((grp, gi) => {
+    const w = grp.items.reduce((a, it) => a + it[2], 0);
+    comp.insertAdjacentHTML('beforeend', `<i data-g="${gi}" style="width:${w / total * 100}%;background:${grp.c}" title="${grp.g} ${w} g"></i>`);
+    box.insertAdjacentHTML('beforeend', `<div class="card grp" data-g="${gi}"><h4><span class="sw" style="background:${grp.c}"></span>${grp.g}<span class="ko">${grp.ko}</span><span class="w">${w} g</span></h4>` +
+      grp.items.map(it => `<div class="it"><div><b>${it[0]}</b> <em>${it[1]}</em></div><span>${it[2]} g</span></div>`).join('') + '</div>');
+  });
+  const hit = gi => document.querySelectorAll('.grp').forEach(x => x.classList.toggle('on', x.dataset.g === gi));
+  comp.querySelectorAll('i').forEach(i => i.addEventListener('click', () => hit(i.dataset.g)));
+  box.querySelectorAll('.grp').forEach(g => g.addEventListener('click', () => hit(g.dataset.g)));
+})();
+
+/* ============ Chart.js ============ */
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function chartDefaults() {
+  Chart.defaults.color = css('--ink-2');
+  Chart.defaults.font.family = "'Noto Sans TC','Noto Sans KR',sans-serif";
+  Chart.defaults.font.size = 13;
+  Chart.defaults.borderColor = 'rgba(255,255,255,.07)';
+}
+let trendChart, causeChart;
+window.redrawCharts = () => { trendChart && trendChart.resize(); causeChart && causeChart.resize(); };
+function initTrend() {
+  chartDefaults();
+  const ad = ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025*'];
+  const roc = ['104','105','106','107','108','109','110','111','112','113','114*'];
+  const people = [275,367,385,390,262,656,560,580,762,757,343];
+  const cases  = [179,216,263,241,207,454,389,410,520,534,256];
+  trendChart = new Chart(document.getElementById('trendChart'), {
+    data: { labels: ad, datasets: [
+      { type: 'line', label: '發生案件數 사고 건수', data: cases, borderColor: css('--accent2'), backgroundColor: css('--accent2'), borderWidth: 3, pointRadius: 4, tension: .3, order: 1 },
+      { type: 'bar', label: '發生人數 사고 인원', data: people, backgroundColor: people.map((_, i) => i >= 8 ? css('--accent') : 'rgba(255,122,47,.45)'), borderRadius: 6, order: 2 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, animation: { duration: 1200 },
+      plugins: { legend: { position: 'top', align: 'end', labels: { boxWidth: 12, usePointStyle: true } },
+        tooltip: { mode: 'index', intersect: false, padding: 10 } },
+      scales: { y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,.06)' } }, x: { grid: { display: false } } } }
+  });
+  let isRoc = false;
+  document.getElementById('yrToggle').addEventListener('click', e => {
+    isRoc = !isRoc; trendChart.data.labels = isRoc ? roc : ad; trendChart.update();
+    e.target.textContent = isRoc ? '切換：西元年' : '切換：民國年';
+  });
+}
+function initCause() {
+  chartDefaults();
+  const lbl = ['迷路','創傷','墜谷','疾病','疲勞','遲歸','其他','天候惡劣','高山症','動物或昆蟲攻擊','不明','無資料','落石','落雷'];
+  const val = [2256,787,366,352,224,198,186,180,166,123,60,59,34,3];
+  const grays = ['#5b6884','#4f5b75','#46526a','#3e4960','#374156','#323b4f','#2d3547','#293141','#252c3b','#212836','#1e2431'];
+  causeChart = new Chart(document.getElementById('causeChart'), {
+    type: 'doughnut',
+    data: { labels: lbl, datasets: [{ data: val, backgroundColor: [css('--accent'), css('--accent2'), 'rgba(76,201,240,.5)', ...grays], borderColor: css('--bg'), borderWidth: 2, hoverOffset: 12 }] },
+    options: { responsive: true, maintainAspectRatio: false, cutout: '62%', animation: { animateRotate: true, duration: 1200 },
+      plugins: { legend: { display: false }, tooltip: { padding: 10, callbacks: { label: c => ` ${c.label}：${c.raw} 人（${(c.raw / 4994 * 100).toFixed(2)}%）` } } },
+      onHover: (e, els) => { if (els.length) setCenter(els[0].index); } }
+  });
+}
+function setCenter(i) {
+  const v = causeChart.data.datasets[0].data[i];
+  $('#dcV').textContent = (v / 4994 * 100).toFixed(2) + '%'; $('#dcL').textContent = causeChart.data.labels[i];
+  $('#dcV').style.color = i === 0 ? css('--accent') : i < 3 ? css('--accent2') : css('--ink-2');
+}
+function animateRank() {
+  document.querySelectorAll('.rank .fill').forEach(f => { f.style.width = 0; setTimeout(() => f.style.width = (parseFloat(f.dataset.w) / 45.17 * 100) + '%', 150); });
+}
+document.querySelectorAll('.rank-row').forEach(r => r.addEventListener('click', () => {
+  document.querySelectorAll('.rank-row').forEach(x => x.classList.toggle('on', x === r));
+  const i = +r.dataset.i; if (!causeChart) return;
+  causeChart.setActiveElements([{ datasetIndex: 0, index: i }]); causeChart.update(); setCenter(i);
+}));
+
+/* ============ P9 視域分析 SVG ============ */
+function initViewshed() {
+  const svg = document.getElementById('vsSvg'), NS = 'http://www.w3.org/2000/svg';
+  const mk = (n, a, parent = svg) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); parent.appendChild(e); return e; };
+  const key = [[0,290],[60,240],[120,120],[180,200],[235,262],[290,185],[345,228],[400,150],[455,205],[505,292],[565,232],[625,168],[685,214],[745,158],[800,236]];
+  const pts = [];
+  for (let x = 0; x <= 800; x += 4) {
+    let j = 0; while (key[j + 1][0] < x) j++;
+    const [x0, y0] = key[j], [x1, y1] = key[j + 1], t = (x - x0) / (x1 - x0), ts = (1 - Math.cos(t * Math.PI)) / 2;
+    pts.push([x, y0 + (y1 - y0) * ts + 1.5 * Math.sin(x / 7)]);
+  }
+  const tIdx = 30, eye = [pts[tIdx][0], pts[tIdx][1] - 60];
+  const vis = pts.map(() => false); vis[tIdx] = true;
+  [1, -1].forEach(dir => {
+    let maxA = -Infinity;
+    for (let i = tIdx + dir; i >= 0 && i < pts.length; i += dir) {
+      const a = (eye[1] - pts[i][1]) / Math.abs(pts[i][0] - eye[0]);
+      vis[i] = a >= maxA - 1e-9; maxA = Math.max(maxA, a);
+    }
+  });
+  const routeFrom = 92, routeTo = 172;
+  const path = arr => 'M' + arr.map(p => p.join(',')).join(' L');
+  mk('path', { d: path(pts) + ' L800,330 L0,330 Z', fill: '#16213a' });
+  mk('path', { d: path(pts), fill: 'none', stroke: '#45526b', 'stroke-width': 2 });
+  const gRays = mk('g', { opacity: 0 }), gVis = mk('g', { opacity: 0 }), gRoute = mk('g', { opacity: 0 }), gHot = mk('g', { opacity: 0 });
+  [gRays, gVis, gRoute, gHot].forEach(g => g.style.transition = 'opacity .6s');
+  const runs = (from, to) => { const out = []; let cur = null; for (let i = from; i <= to; i++) { if (vis[i]) { if (!cur) { cur = []; out.push(cur); } cur.push(pts[i]); } else cur = null; } return out; };
+  runs(0, pts.length - 1).forEach(sg => { if (sg.length > 1) mk('path', { d: path(sg), fill: 'none', stroke: '#4cc9f0', 'stroke-width': 6, 'stroke-linecap': 'round' }, gVis); });
+  [44, 60, 96, 140, 160, 184, 196].forEach(i => { if (vis[i]) mk('line', { x1: eye[0], y1: eye[1], x2: pts[i][0], y2: pts[i][1], stroke: '#4cc9f0', 'stroke-opacity': .35, 'stroke-dasharray': '4 5' }, gRays); });
+  const route = pts.slice(routeFrom, routeTo + 1).map(p => [p[0], p[1] - 14]);
+  mk('path', { d: path(route), fill: 'none', stroke: '#eef3fa', 'stroke-width': 2, 'stroke-dasharray': '7 6' }, gRoute);
+  mk('text', { x: route[route.length - 1][0], y: Math.min(...route.map(p => p[1])) - 34, fill: '#eef3fa', 'font-size': 14, 'text-anchor': 'end' }, gRoute).textContent = '可能路線 예상 경로';
+  const hots = runs(routeFrom, routeTo), longest = Math.max(...hots.map(h => h.length));
+  hots.forEach(h => {
+    if (h.length < 3) return;
+    mk('path', { d: path(h), fill: 'none', stroke: '#ff7a2f', 'stroke-width': 12, 'stroke-linecap': 'round', opacity: .9 }, gHot);
+    if (h.length !== longest) return;
+    const m = h[Math.floor(h.length / 2)];
+    mk('text', { x: m[0], y: m[1] + 34, fill: '#ff7a2f', 'font-size': 15, 'font-weight': 700, 'text-anchor': 'middle' }, gHot).textContent = '熱區 핫존';
+  });
+  const tw = pts[tIdx];
+  mk('path', { d: `M${tw[0] - 10},${tw[1]} L${eye[0]},${eye[1]} L${tw[0] + 10},${tw[1]} M${tw[0] - 6},${tw[1] - 16} L${tw[0] + 6},${tw[1] - 16} M${tw[0] - 3},${tw[1] - 32} L${tw[0] + 3},${tw[1] - 32}`, stroke: '#ff7a2f', 'stroke-width': 2.5, fill: 'none' });
+  mk('circle', { cx: eye[0], cy: eye[1], r: 5, fill: '#ff7a2f' });
+  const waves = mk('g', {});
+  [16, 30, 44].forEach((rr, k) => { const c = mk('path', { d: `M${eye[0] + rr * .7},${eye[1] - rr * .7} A${rr},${rr} 0 0 1 ${eye[0] + rr * .7},${eye[1] + rr * .7}`, stroke: '#ff7a2f', fill: 'none', 'stroke-width': 2 }, waves); c.style.animation = `pulse 1.6s ${k * .25}s infinite`; });
+  mk('text', { x: eye[0], y: eye[1] - 14, fill: '#eef3fa', 'font-size': 14, 'text-anchor': 'middle', 'font-weight': 700 }).textContent = '基地台 기지국';
+  const caps = {
+    1: '迷途者手機曾與此基地台「握手」，電信紀錄留下連線證據。<span class="ko">조난자 휴대폰이 이 기지국에 접속한 기록이 남아 있다.</span>',
+    2: 'GIS 視域分析：計算所有「看得見基地台」的坡面（青色）。<span class="ko">GIS 가시권 분석: 기지국이 보이는 사면(청색) 계산</span>',
+    3: '視域 ∩ 可能路線 ＝ 搜索熱區（橘色），派遣隊伍優先搜索。<span class="ko">가시권 ∩ 예상 경로 = 수색 핫존(주황) → 우선 수색</span>'
+  };
+  function step(n) {
+    gRays.style.opacity = n >= 2 ? 1 : 0; gVis.style.opacity = n === 2 ? 1 : n === 3 ? .35 : 0;
+    gRoute.style.opacity = gHot.style.opacity = n >= 3 ? 1 : 0;
+    document.getElementById('vsCap').innerHTML = caps[n];
+    document.querySelectorAll('.steps .btn').forEach(b => b.classList.toggle('on', +b.dataset.s === n));
+  }
+  document.querySelectorAll('.steps .btn').forEach(b => b.addEventListener('click', () => step(+b.dataset.s)));
+  step(1);
+}
+
+/* ============ 手機防誤觸 ============ */
+document.querySelectorAll('[data-prevent-swipe]').forEach(el => ['touchstart', 'touchmove', 'touchend'].forEach(ev => el.addEventListener(ev, e => e.stopPropagation(), { passive: false })));
+</script>
+
+<!-- ============ Firebase：投票 + 全域提問牆（整份簡報只初始化一次） ============ -->
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js';
+  import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, query, orderBy, doc, setDoc, updateDoc, getDocs, deleteDoc } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js';
+  import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
+  import { initializeAppCheck, ReCaptchaV3Provider } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app-check.js';
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBPaIDGb3RaYhxYrXVE_6YndLUi2jLv1R4",
+    authDomain: "html-slide-db.firebaseapp.com",
+    projectId: "html-slide-db",
+    storageBucket: "html-slide-db.firebasestorage.app",
+    messagingSenderId: "1045858073731",
+    appId: "1:1045858073731:web:8d70945fa081f49929afb6"
+  };
+  const app = initializeApp(firebaseConfig);
+  initializeAppCheck(app, { provider: new ReCaptchaV3Provider('6LevoHstAAAAALRLwnA0DSLiXAK8wER_LEM-eP9b'), isTokenAutoRefreshEnabled: true });
+  const fdb = getFirestore(app);
+  const auth = getAuth(app);
+  try { await signInAnonymously(auth); } catch (e) { console.error('匿名登入失敗', e); }
+  const SLUG = 'more_korea_2026';
+  const status = msg => { const el = document.getElementById('pollStatus'); if (el) el.textContent = msg; };
+  const offline = e => { console.error(e); status('⚠ 互動連線失敗（本機預覽時屬正常，請用線上網址）'); };
+
+  /* ---------- 單選投票（巢狀 map + merge） ---------- */
+  const pollRef = doc(fdb, SLUG + '_poll', 'results');
+  let userId = localStorage.getItem('more_uid');
+  if (!userId) { userId = 'u_' + Math.random().toString(36).slice(2, 9); try { localStorage.setItem('more_uid', userId); } catch (e) {} }
+  let myVote = null;
+  const opts = [...document.querySelectorAll('.popt')];
+  opts.forEach(b => b.addEventListener('click', async () => {
+    myVote = b.dataset.id; opts.forEach(x => x.classList.toggle('mine', x === b));
+    try { await setDoc(pollRef, { updated_at: serverTimestamp(), votes: { [userId]: myVote } }, { merge: true }); } catch (e) { offline(e); }
+  }));
+  onSnapshot(pollRef, snap => {
+    const votes = (snap.data() || {}).votes || {};
+    if (votes[userId]) { myVote = votes[userId]; opts.forEach(x => x.classList.toggle('mine', x.dataset.id === myVote)); }
+    const counts = {}; opts.forEach(o => counts[o.dataset.id] = 0);
+    Object.values(votes).forEach(v => { if (counts[v] !== undefined) counts[v]++; });
+    const total = Object.values(counts).reduce((a, b) => a + b, 0);
+    document.getElementById('poll-total').textContent = total;
+    opts.forEach(o => { const pct = total ? Math.round(counts[o.dataset.id] / total * 100) : 0; o.querySelector('.bar i').style.width = pct + '%'; o.querySelector('.pc').textContent = pct + '%'; });
+    status('');
+  }, offline);
+  document.getElementById('pollReveal').addEventListener('click', e => {
+    const on = !document.querySelector('.popt.answer');
+    document.querySelector('.popt[data-id="lost"]').classList.toggle('answer', on);
+    e.target.textContent = on ? '正解：迷路 45.17% · 정답: 길 잃음' : '揭曉答案 · 정답 공개';
+  });
+
+  /* ---------- 匿名提問牆 ---------- */
+  const qaRef = collection(fdb, SLUG + '_qa');
+  const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  window.qaSubmit = async function () {
+    const input = document.getElementById('qa-input'), text = input.value.trim(); if (!text) return;
+    const btn = document.getElementById('qa-btn'); btn.disabled = true;
+    try { await addDoc(qaRef, { text, likes: 0, created_at: serverTimestamp() }); input.value = ''; } catch (e) { console.error(e); alert('送出失敗，請確認網路連線。'); } finally { btn.disabled = false; }
+  };
+  document.getElementById('qa-input').addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter' && !e.isComposing) window.qaSubmit(); });
+  document.getElementById('qa-btn').addEventListener('click', window.qaSubmit);
+  window.qaLike = async (id, cur) => { try { await updateDoc(doc(fdb, SLUG + '_qa', id), { likes: (cur || 0) + 1 }); } catch (e) { console.error(e); } };
+  onSnapshot(query(qaRef, orderBy('created_at', 'desc')), snap => {
+    const items = []; snap.forEach(d => items.push({ id: d.id, ...d.data() }));
+    items.sort((a, b) => (b.likes || 0) - (a.likes || 0));
+    document.getElementById('qa-list').innerHTML = items.length ? items.map(q =>
+      `<div class="qa-item"><span class="qa-text">${escapeHtml(q.text)}</span><button class="qa-like" onclick="qaLike('${q.id}',${q.likes || 0})">👍 ${q.likes || 0}</button></div>`).join('')
+      : '<div style="color:#667;text-align:center;padding:20px;font-size:16px;">還沒有問題，當第一個發問的人 🙋<br><span class="ko" style="font-size:14px">첫 번째 질문을 남겨 주세요</span></div>';
+  }, e => console.error(e));
+  const qaSidebar = document.getElementById('qa-sidebar'), qaOverlay = document.getElementById('qa-overlay');
+  window.toggleQA = function (force) {
+    const open = force !== undefined ? force : !qaSidebar.classList.contains('open');
+    qaSidebar.classList.toggle('open', open); qaOverlay.classList.toggle('show', open);
+    if (open) setTimeout(() => document.getElementById('qa-input')?.focus(), 300);
+  };
+  document.getElementById('qa-handle').addEventListener('click', () => window.toggleQA());
+  qaOverlay.addEventListener('click', () => window.toggleQA(false));
+
+  /* ---------- 講者課後清除：網址加 ?reset=1 ---------- */
+  window.clearInteractions = async function (silent) {
+    let total = 0;
+    const snap = await getDocs(qaRef); for (const d of snap.docs) { await deleteDoc(d.ref); total++; }
+    try { await deleteDoc(pollRef); } catch (e) {}
+    if (!silent) alert('已清空投票與提問牆，共刪除 ' + total + ' 則提問。');
+    return total;
+  };
+  if (new URLSearchParams(location.search).get('reset') === '1') {
+    setTimeout(() => { if (confirm('【講者專用】確定清空本簡報的投票與提問牆資料？')) window.clearInteractions(); }, 800);
+  }
+</script>
+</body>
+</html>
