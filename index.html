@@ -94,6 +94,8 @@ body.no-ko .ko{display:none !important}
 .video-ph .play{width:72px;height:72px;border-radius:50%;border:2px solid var(--ink-4);display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--ink-3)}
 .video-ph code{font:500 16px 'JetBrains Mono',monospace;color:var(--accent2);background:rgba(76,201,240,.08);padding:5px 11px;border-radius:7px}
 .video-wrap.ready .video-ph{display:none}
+.vsrc{margin-top:12px;font-size:15px;color:var(--ink-3);line-height:1.5}
+.vsrc .ko{display:block;font-size:14px;color:var(--ink-3)}
 
 /* ---------- 投票 ---------- */
 .poll-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:36px;align-items:center}
@@ -429,6 +431,7 @@ body.mobile #qa-handle > span:nth-child(2),body.mobile #qa-handle .qh-dot{displa
     <div class="head"><div class="kicker">Video 1 · 影片</div><h3>台灣山林之美 <span class="ko" style="font-size:18px">· 대만 산림의 아름다움</span></h3></div>
     <div class="video-wrap" data-yt="V1">
       <div class="video-ph"><div class="play">▶</div><div>尚未設定 YouTube 連結</div><code>YOUTUBE.V1</code><div class="note">在 index.html 開頭的 YOUTUBE 設定區貼上連結</div></div></div>
+    <p class="vsrc">影片截取於《齊柏林看見台灣十週年》影片，以及《群山之島與不去會死的他們》第一集。<span class="ko">영상 출처: 《齊柏林看見台灣十週年》 영상 및 《群山之島與不去會死的他們》 제1화에서 발췌</span></p>
   </div>
   <aside class="notes" data-sec="0"><p>（播放台灣山林影片。空白鍵播放／暫停，播完按 → 繼續。若點過影片畫面，請先點影片外的空白處，鍵盤才會回到簡報。）</p><p class="ko">(대만 산림 영상 재생. 스페이스 키로 재생/일시정지, 끝나면 → 키로 다음 페이지. 영상 화면을 클릭했다면 영상 밖의 빈 곳을 한 번 클릭해야 키보드가 슬라이드로 돌아옵니다.)</p></aside>
 </section>
@@ -503,6 +506,7 @@ body.mobile #qa-handle > span:nth-child(2),body.mobile #qa-handle .qh-dot{displa
     <div class="head"><div class="kicker">Video 2 · 影片</div><h3>山域事故救援實況 <span class="ko" style="font-size:18px">· 산악사고 구조 현장</span></h3></div>
     <div class="video-wrap" data-yt="V2">
       <div class="video-ph"><div class="play">▶</div><div>尚未設定 YouTube 連結</div><code>YOUTUBE.V2</code><div class="note">在 index.html 開頭的 YOUTUBE 設定區貼上連結</div></div></div>
+    <p class="vsrc">影片截取於 TVBS 新聞與真實搜救畫面。<span class="ko">영상 출처: TVBS 뉴스 및 실제 수색구조 현장 영상에서 발췌</span></p>
   </div>
   <aside class="notes" data-sec="0"><p>（播放山域事故救援影片。空白鍵播放／暫停，播完按 → 繼續。若點過影片畫面，請先點影片外的空白處，鍵盤才會回到簡報。）</p><p class="ko">(산악사고 구조 영상 재생. 스페이스 키로 재생/일시정지, 끝나면 → 키로 다음 페이지. 영상 화면을 클릭했다면 영상 밖의 빈 곳을 한 번 클릭해야 키보드가 슬라이드로 돌아옵니다.)</p></aside>
 </section>
@@ -768,8 +772,8 @@ body.mobile #qa-handle > span:nth-child(2),body.mobile #qa-handle .qh-dot{displa
 /* ============ 影片：在這裡貼上 YouTube 連結（留空會顯示提示框） ============
    支援 https://youtu.be/xxxx、https://www.youtube.com/watch?v=xxxx、含 ?t=30 起始秒數 */
 const YOUTUBE = {
-  V1: '',  // P.02 之後：台灣山林之美
-  V2: '',  // P.04 之後：山域事故救援實況
+  V1: 'https://youtu.be/BBdP_kJrAiE',  // P.02 之後：台灣山林之美
+  V2: 'https://youtu.be/gsQxt0hmrtg',  // P.04 之後：山域事故救援實況
   V3: 'https://youtu.be/2EjniDRJZ9Y'   // P.15 之後：結尾影片（不計入 10 分鐘）
 };
 
