@@ -329,6 +329,7 @@ body.no-ko .ko{display:none !important}
 .qa-item{background:rgba(255,255,255,.06);border-left:3px solid var(--accent);border-radius:8px;padding:10px 12px;margin-bottom:8px;font-size:16px;display:flex;align-items:center;gap:10px}
 .qa-text{flex:1;color:#eee;line-height:1.5;text-align:left;word-break:break-word}
 .qa-zh{display:block;margin-top:5px;padding-top:5px;border-top:1px dashed rgba(255,255,255,.12);font-size:15px;color:var(--accent2)}
+.qa-kotr{color:#ffb38a;font-family:'Noto Sans KR',sans-serif}
 .qa-like{flex:0 0 auto;background:rgba(255,122,47,.15);border:1px solid rgba(255,122,47,.4);color:var(--accent);border-radius:20px;padding:4px 10px;cursor:pointer;font-size:15px;font-family:inherit;white-space:nowrap}
 
 /* ---------- 全域提問牆側邊欄 ---------- */
@@ -764,7 +765,7 @@ html.clean .diff .sol{max-height:120px;opacity:1}
   </button>
   <div class="qa-inner">
     <div style="font-size:19px;font-weight:700;color:var(--accent2);margin-bottom:4px;">匿名提問牆 <span class="live-badge">LIVE</span></div>
-    <div class="ko" style="font-size:15px;margin-bottom:4px;">익명 질문 게시판 — 한국어로 질문해도 됩니다</div><div style="font-size:14px;color:var(--ink-3);margin-bottom:14px;">韓文提問會自動翻譯成中文 <span class="ko">· 한국어 질문은 중국어로 자동 번역됩니다</span></div>
+    <div class="ko" style="font-size:15px;margin-bottom:4px;">익명 질문 게시판 — 한국어로 질문해도 됩니다</div><div style="font-size:14px;color:var(--ink-3);margin-bottom:14px;">中文⇄韓文提問會自動互譯 <span class="ko">· 중국어⇄한국어 질문 자동 번역</span></div>
     <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
       <input id="qa-input" class="ui-input" type="text" placeholder="輸入問題 / 질문을 입력하세요…" maxlength="120" />
       <button id="qa-btn" class="ui-btn">送出提問 · 보내기</button>
@@ -1139,25 +1140,68 @@ document.querySelectorAll('[data-prevent-swipe]').forEach(el => ['touchstart', '
   /* ---------- 匿名提問牆 ---------- */
   const qaRef = collection(fdb, SLUG + '_qa');
   const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  /* 韓文提問自動翻成繁體中文（Google 翻譯，失敗時改用 MyMemory） */
-  const hasKo = t => /[\uAC00-\uD7A3\u1100-\u11FF\u3130-\u318F]/.test(t);
-  async function toZh(text) {
-    const q = encodeURIComponent(text);
-    try {
-      const r = await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=ko&tl=zh-TW&dt=t&q=' + q, { signal: AbortSignal.timeout(6000) });
-      if (r.ok) { const j = await r.json(); const t = (j[0] || []).map(x => x[0]).join('').trim(); if (t) return t; }
-    } catch (e) {}
-    try {
-      const r = await fetch('https://api.mymemory.translated.net/get?langpair=ko|zh-TW&q=' + q, { signal: AbortSignal.timeout(6000) });
-      if (r.ok) { const j = await r.json(); const t = (j.responseData && j.responseData.translatedText || '').trim(); if (t) return t; }
-    } catch (e) {}
-    return '';
+  /* 提問自動中韓互譯：韓文 → 繁體中文、中文 → 韓文（Google 翻譯，失敗時改用 MyMemory），再套用搜救專業用語修正 */
+  const hasKo = t => /[가-힣ᄀ-ᇿ㄰-㆏]/.test(t);
+  const hasZh = t => !hasKo(t) && /[㐀-鿿]/.test(t);
+  // 專業用語：[來源含此詞, 譯文中要換掉的詞, 正確譯法]
+  const GLOSSARY = {
+    zh: [  // 韓 → 中
+      ['조난자', ['罹難者', '遇難者', '遇險者', '受難者'], '受困者'],
+      ['조난', ['罹難', '遇難'], '受困'],
+      ['핫존', ['熱點區域', '熱點區', '熱點', 'hot zone', 'Hot Zone'], '熱區'],
+      ['들것', ['担架'], '擔架'],
+      ['홀링', ['拖運', '拖曳'], '拖拉'],
+    ],
+    ko: [  // 中 → 韓
+      ['迷途者', ['잃어버린 사람들', '잃어버린 사람', '길을 잃은 사람들', '길을 잃은 사람', '길 잃은 사람들', '길 잃은 사람', '미아'], '조난자'],
+      ['受困者', ['갇힌 사람', '피해자'], '조난자'],
+      ['山難', ['산악 재해', '산 재난', '산사태'], '산악사고'],
+      ['熱區', ['핫스팟', '핫 스팟', '열 구역', '열구역', '뜨거운 지역'], '핫존'],
+      ['捲式擔架', ['롤 들것', '롤링 들것', '두루마리 들것', '말이 들것', '롤형 들것', '롤 스트레처'], 'SKED 들것'],
+      ['搜救', ['검색 및 구조', '수색 및 구조'], '수색구조'],
+    ],
+  };
+  // 韓文助詞依前一字有無收尾音（받침）變化：은/는、이/가、을/를、과/와
+  const batchim = ch => { const c = ch.charCodeAt(0) - 0xAC00; return c >= 0 && c < 11172 && c % 28 !== 0; };
+  const JOSA = [['은', '는'], ['이', '가'], ['을', '를'], ['과', '와']];
+  function fixTerms(src, out, tl) {
+    for (const [key, wrongs, right] of GLOSSARY[tl]) {
+      if (!src.includes(key)) continue;
+      for (const w of wrongs) {
+        if (tl === 'ko') {
+          const bw = batchim(w.slice(-1)), br = batchim(right.slice(-1));
+          for (const [c, v] of JOSA) out = out.split(w + (bw ? c : v)).join(right + (br ? c : v));
+        }
+        out = out.split(w).join(right);
+      }
+    }
+    return out;
   }
-  const pendingZh = new Set();
+  async function translate(text, sl, tl) {
+    const q = encodeURIComponent(text), from = sl === 'zh' ? 'zh-TW' : 'ko', to = tl === 'zh' ? 'zh-TW' : 'ko';
+    let out = '';
+    try {
+      const r = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${from}&tl=${to}&dt=t&q=` + q, { signal: AbortSignal.timeout(6000) });
+      if (r.ok) { const j = await r.json(); out = (j[0] || []).map(x => x[0]).join('').trim(); }
+    } catch (e) {}
+    if (!out) try {
+      const r = await fetch(`https://api.mymemory.translated.net/get?langpair=${from}|${to}&q=` + q, { signal: AbortSignal.timeout(6000) });
+      if (r.ok) { const j = await r.json(); out = (j.responseData && j.responseData.translatedText || '').trim(); }
+    } catch (e) {}
+    return out ? fixTerms(text, out, tl) : '';
+  }
+  async function qaTranslate(text) {
+    if (hasKo(text)) return { text_zh: await translate(text, 'ko', 'zh') };
+    if (hasZh(text)) return { text_ko: await translate(text, 'zh', 'ko') };
+    return {};
+  }
+  window.qaTranslate = qaTranslate;   // 供測試用
+  const needsTr = q => (hasKo(q.text) && !q.text_zh) || (hasZh(q.text) && !q.text_ko);
+  const pendingTr = new Set();
   window.qaSubmit = async function () {
     const input = document.getElementById('qa-input'), text = input.value.trim(); if (!text) return;
     const btn = document.getElementById('qa-btn'); btn.disabled = true;
-    try { const text_zh = hasKo(text) ? await toZh(text) : ''; await addDoc(qaRef, { text, text_zh, likes: 0, created_at: serverTimestamp() }); input.value = ''; } catch (e) { console.error(e); alert('送出失敗，請確認網路連線。'); } finally { btn.disabled = false; }
+    try { const tr = await qaTranslate(text); await addDoc(qaRef, { text, ...tr, likes: 0, created_at: serverTimestamp() }); input.value = ''; } catch (e) { console.error(e); alert('送出失敗，請確認網路連線。'); } finally { btn.disabled = false; }
   };
   document.getElementById('qa-input').addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter' && !e.isComposing) window.qaSubmit(); });
   document.getElementById('qa-btn').addEventListener('click', window.qaSubmit);
@@ -1166,13 +1210,13 @@ document.querySelectorAll('[data-prevent-swipe]').forEach(el => ['touchstart', '
     const items = []; snap.forEach(d => items.push({ id: d.id, ...d.data() }));
     items.sort((a, b) => (b.likes || 0) - (a.likes || 0));
     document.getElementById('qa-list').innerHTML = items.length ? items.map(q =>
-      `<div class="qa-item"><span class="qa-text">${escapeHtml(q.text)}${q.text_zh ? `<span class="qa-zh">中譯：${escapeHtml(q.text_zh)}</span>` : ''}</span><button class="qa-like" onclick="qaLike('${q.id}',${q.likes || 0})">👍 ${q.likes || 0}</button></div>`).join('')
+      `<div class="qa-item"><span class="qa-text">${escapeHtml(q.text)}${q.text_zh ? `<span class="qa-zh">中譯：${escapeHtml(q.text_zh)}</span>` : ''}${q.text_ko ? `<span class="qa-zh qa-kotr">한국어 번역: ${escapeHtml(q.text_ko)}</span>` : ''}</span><button class="qa-like" onclick="qaLike('${q.id}',${q.likes || 0})">👍 ${q.likes || 0}</button></div>`).join('')
       : '<div style="color:#667;text-align:center;padding:20px;font-size:16px;">還沒有問題，當第一個發問的人 🙋<br><span class="ko" style="font-size:14px">첫 번째 질문을 남겨 주세요</span></div>';
-    // 送出時翻譯失敗的韓文提問：在這裡補翻並寫回，所有人都看得到
-    items.filter(q => hasKo(q.text) && !q.text_zh && !pendingZh.has(q.id)).forEach(async q => {
-      pendingZh.add(q.id);
-      const zh = await toZh(q.text);
-      if (zh) { try { await updateDoc(doc(fdb, SLUG + '_qa', q.id), { text_zh: zh }); } catch (e) { console.error(e); } }
+    // 還沒有譯文的提問（送出時翻譯失敗或舊資料）：在這裡補翻並寫回，所有人都看得到
+    items.filter(q => needsTr(q) && !pendingTr.has(q.id)).forEach(async q => {
+      pendingTr.add(q.id);
+      const tr = await qaTranslate(q.text);
+      if (Object.values(tr)[0]) { try { await updateDoc(doc(fdb, SLUG + '_qa', q.id), tr); } catch (e) { console.error(e); } }
     });
   }, e => console.error(e));
   const qaSidebar = document.getElementById('qa-sidebar'), qaOverlay = document.getElementById('qa-overlay');
