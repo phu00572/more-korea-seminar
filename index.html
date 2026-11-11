@@ -371,6 +371,10 @@ body.mobile #qa-handle{top:auto;bottom:16px;right:-48px;transform:none;width:48p
 body.mobile #qa-handle > span:nth-child(2),body.mobile #qa-handle .qh-dot{display:none}
 /* 截圖模式（網址加 ?shot）：關閉動畫，供匯出講稿畫面 */
 html.shot *,html.shot *::before,html.shot *::after{transition:none !important;animation:none !important}
+/* 聽眾版（網址加 ?clean）：隱藏操作介面、展開對策、影片顯示連結，供匯出 PDF 講義 */
+html.clean #hint,html.clean #qa-sidebar,html.clean #qa-overlay,html.clean #notes,html.clean .reveal .controls,html.clean .reveal .progress,html.clean .diff .tap{display:none !important}
+html.clean .diff .sol{max-height:120px;opacity:1}
+.yt-link{position:absolute;left:0;right:0;bottom:0;padding:10px 16px;background:linear-gradient(transparent,rgba(0,0,0,.85));font:700 16px 'JetBrains Mono',monospace;color:#fff;text-align:right}
 .yt-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .yt-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:96px;height:68px;border-radius:16px;background:#ff0033;display:flex;align-items:center;justify-content:center}
 .yt-play::after{content:"";border-left:26px solid #fff;border-top:16px solid transparent;border-bottom:16px solid transparent;margin-left:6px}
@@ -796,7 +800,10 @@ document.getElementById('qr-url').textContent = joinUrl.replace('https://', '');
 /* ============ Reveal 初始化（響應式） ============ */
 let timerStart = 0;
 const $ = s => document.querySelector(s);
-const SHOT = new URLSearchParams(location.search).has('shot');
+const _qs = new URLSearchParams(location.search);
+const CLEAN = _qs.has('clean');
+const SHOT = _qs.has('shot') || CLEAN;
+if (CLEAN) document.documentElement.classList.add('clean');
 if (SHOT) document.documentElement.classList.add('shot');
 function toggleNotes() { $('#notes').classList.toggle('show'); if (!timerStart) timerStart = Date.now(); }
 function toggleKo() { document.body.classList.toggle('no-ko'); }
@@ -813,7 +820,7 @@ function ytLoad(wrap) {
   if (wrap.querySelector('iframe, .yt-thumb')) return;
   const v = ytParse(YOUTUBE[wrap.dataset.yt]); if (!v) return;
   if (SHOT) {  // 截圖模式：顯示影片縮圖
-    wrap.insertAdjacentHTML('beforeend', `<img class="yt-thumb" src="https://img.youtube.com/vi/${v.id}/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${v.id}/hqdefault.jpg'" alt=""><div class="yt-play"></div>`);
+    wrap.insertAdjacentHTML('beforeend', `<img class="yt-thumb" src="https://img.youtube.com/vi/${v.id}/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${v.id}/hqdefault.jpg'" alt=""><div class="yt-play"></div>${CLEAN ? `<div class="yt-link">▶ youtu.be/${v.id}</div>` : ''}`);
     wrap.classList.add('ready'); return;
   }
   const f = document.createElement('iframe');
@@ -1072,7 +1079,7 @@ function initViewshed() {
     document.querySelectorAll('.steps .btn').forEach(b => b.classList.toggle('on', +b.dataset.s === n));
   }
   document.querySelectorAll('.steps .btn').forEach(b => b.addEventListener('click', () => step(+b.dataset.s)));
-  step(1);
+  step(CLEAN ? 3 : 1);
 }
 
 /* ============ 手機防誤觸 ============ */
